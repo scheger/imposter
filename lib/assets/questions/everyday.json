@@ -1,0 +1,54 @@
+{
+  "Fragen": [
+    {
+      "typ": "Zahl",
+      "crew": "Wie viele Stunden schläfst du pro Nacht?",
+      "imposter": "Wie viele Stunden pro Woche schaust du Serien?"
+    },
+    {
+      "typ": "Zahl",
+      "crew": "Wie oft gehst du pro Woche einkaufen?",
+      "imposter": "Wie oft isst du pro Woche Nudeln?"
+    },
+    {
+      "typ": "Zahl",
+      "crew": "Wie viele Tassen Kaffee trinkst du am Tag?",
+      "imposter": "Wie viele Gläser Wasser trinkst du am Tag?"
+    },
+    {
+      "typ": "Zahl",
+      "crew": "Wie viele Paar Schuhe besitzt du?",
+      "imposter": "Wie viele Jacken besitzt du?"
+    },
+    {
+      "typ": "Person",
+      "crew": "Wer ist dein Lieblingsschauspieler?",
+      "imposter": "Wer ist dein Lieblingssänger?"
+    },
+    {
+      "typ": "Person",
+      "crew": "Wen würdest du als Vorbild bezeichnen?",
+      "imposter": "Wen würdest du gerne mal persönlich treffen?"
+    },
+    {
+      "typ": "Person",
+      "crew": "Wer war dein Lieblingslehrer in der Schule?",
+      "imposter": "Wer war dein lustigster Lehrer in der Schule?"
+    },
+    {
+      "typ": "Ort",
+      "crew": "In welchem Land würdest du gerne Urlaub machen?",
+      "imposter": "In welchem Land würdest du niemals Urlaub machen?"
+    },
+    {
+      "typ": "Ort",
+      "crew": "Wo bist du zuletzt mit dem Zug hingefahren?",
+      "imposter": "Wo bist du zuletzt mit dem Auto hingefahren?"
+    },
+    {
+      "typ": "Ort",
+      "crew": "Welches Restaurant besuchst du am liebsten?",
+      "imposter": "In welchem Café bist du am liebsten?"
+    }
+  ]
+}
