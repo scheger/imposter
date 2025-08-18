@@ -5,13 +5,14 @@ import '../models/game_settings.dart';
 class GameService {
   GameSettings settings = GameSettings();
   List<Player> players = [];
+  int? startPlayerIndex; // wer beginnt?
 
   void setupPlayers(List<String> names) {
     players = names.map((name) => Player(name: name)).toList();
   }
 
   void assignRoles() {
-    final impostersCount = settings.imposters; // <-- nimmt den gespeicherten Wert
+    final impostersCount = settings.imposters;
     final random = Random();
 
     // Alle Rollen zurücksetzen
@@ -25,12 +26,14 @@ class GameService {
       final randomIndex = availableIndexes.removeAt(random.nextInt(availableIndexes.length));
       players[randomIndex].role = PlayerRole.imposter;
     }
-  }
 
+    // 🎲 Startspieler zufällig bestimmen
+    startPlayerIndex = Random().nextInt(players.length);
+  }
 
   void resetGame() {
     settings = GameSettings();
     players = [];
+    startPlayerIndex = null;
   }
 }
-

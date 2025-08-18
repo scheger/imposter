@@ -13,5 +13,7 @@ class Player {
     required this.name,
     this.role = PlayerRole.wordKnower,
   });
+
+  bool get isImposter => role == PlayerRole.imposter;
 }
 

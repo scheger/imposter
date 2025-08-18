@@ -31,7 +31,7 @@
     { "main": "Dart", "related": ["Bowling", "Billard"], "hint": "Wurf" },
     { "main": "Bowling", "related": ["Dart", "Kegeln"], "hint": "Pins" }
   ],
-  "Sport_Equipment": [
+  "Sport Equipment": [
     { "main": "Ball", "related": ["Schläger", "Schuhe", "Trikot"], "hint": "Grundausstattung" },
     { "main": "Schläger", "related": ["Ball", "Handschuhe", "Netz"], "hint": "Spielgerät" },
     { "main": "Schuhe", "related": ["Socken", "Bandagen", "Helm"], "hint": "Tragen" },
@@ -39,7 +39,7 @@
     { "main": "Trikot", "related": ["Shorts", "Socken", "Schuhe"], "hint": "Teamkleidung" },
     { "main": "Handschuhe", "related": ["Schläger", "Helm", "Schoner"], "hint": "Schutz" }
   ],
-  "Bekannte_Sportler": [
+  "Bekannte Sportler": [
     { "main": "Usain Bolt", "related": ["Carl Lewis", "Justin Gatlin", "Michael Johnson"], "hint": "Sprint" },
     { "main": "Michael Phelps", "related": ["Mark Spitz", "Ryan Lochte", "Ian Thorpe"], "hint": "Schwimmen" },
     { "main": "Serena Williams", "related": ["Steffi Graf", "Martina Navratilova", "Venus Williams"], "hint": "Tennis" },

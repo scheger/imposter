@@ -11,7 +11,7 @@ class GameSummaryScreen extends StatelessWidget {
       case PlayerRole.wordKnower:
         return 'Wort: $word';
       case PlayerRole.imposter:
-        return 'Imposter (kennt das Wort nicht)';
+        return 'Imposter ';
       default:
         return player.role.toString().split('.').last;
     }
