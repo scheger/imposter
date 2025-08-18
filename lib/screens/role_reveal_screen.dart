@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../main.dart';
+import '../models/player.dart';
 import 'game_summary_screen.dart';
 
 class RoleRevealScreen extends StatefulWidget {
@@ -14,10 +15,22 @@ class _RoleRevealScreenState extends State<RoleRevealScreen> {
   int _currentIndex = 0;
   bool _revealed = false;
 
+  String _roleText(Player player, String word) {
+    switch (player.role) {
+      case PlayerRole.wordKnower:
+        return 'Dein Wort: $word';
+      case PlayerRole.imposter:
+        return 'Du bist der Imposter!';
+      default:
+        return 'Deine Rolle: ${player.role.toString().split('.').last}';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final players = context.read<GameProvider>().service.players;
-    final settings = context.read<GameProvider>().service.settings;
+    final service = context.read<GameProvider>().service;
+    final players = service.players;
+    final settings = service.settings;
     final player = players[_currentIndex];
 
     return Scaffold(
@@ -28,9 +41,7 @@ class _RoleRevealScreenState extends State<RoleRevealScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    player.knowsWord
-                        ? 'Dein Wort: ${settings.word}'
-                        : 'Du bist der Imposter!',
+                    _roleText(player, settings.word),
                     style: const TextStyle(fontSize: 24),
                     textAlign: TextAlign.center,
                   ),

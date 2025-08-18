@@ -3,14 +3,14 @@ import 'package:provider/provider.dart';
 import '../main.dart';
 import 'player_setup_screen.dart';
 
-class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+class ThemeSelectionScreen extends StatefulWidget {
+  const ThemeSelectionScreen({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  State<ThemeSelectionScreen> createState() => _ThemeSelectionScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _ThemeSelectionScreenState extends State<ThemeSelectionScreen> {
   final List<String> _categories = [
     'Tiere',
     'Essen',
@@ -23,32 +23,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
     'Städte': ['Berlin', 'Paris', 'New York'],
   };
 
-  String? _expandedCategory; // Welche Kategorie ist aufgeklappt
-  String? _selectedSubcategory; // Welche Unterkategorie ist ausgewählt
+  String? _expandedCategory; // aktuell aufgeklappte Kategorie
+  String? _selectedWord; // ausgewähltes Wort
 
   void _toggleCategory(String category) {
     setState(() {
-      if (_expandedCategory == category) {
-        _expandedCategory = null;
-      } else {
-        _expandedCategory = category;
-      }
+      _expandedCategory = _expandedCategory == category ? null : category;
     });
   }
 
-  void _selectSubcategory(String subcat) {
+  void _selectWord(String word) {
     setState(() {
-      _selectedSubcategory = subcat;
+      _selectedWord = word;
     });
 
-    // Direkt im Service speichern, damit es aktuell bleibt
+    // Direkt im Service speichern
     final service = context.read<GameProvider>().service;
     service.settings = service.settings.copyWith(
       category: _expandedCategory!,
-      word: subcat,
+      word: word,
     );
   }
-
 
   Widget _buildCategoryButton(String category) {
     final bool isExpanded = _expandedCategory == category;
@@ -60,34 +55,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
           onPressed: () => _toggleCategory(category),
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30), // runde Ecken
+              borderRadius: BorderRadius.circular(30),
             ),
             padding: const EdgeInsets.symmetric(vertical: 16),
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(width: 16), // Abstand links
+              const SizedBox(width: 16),
               Expanded(
                 child: Text(category, style: const TextStyle(fontSize: 18)),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 16), // Abstand rechts
-                child: Icon(
-                  isExpanded ? Icons.expand_less : Icons.expand_more,
-                ),
-              ),
+              Icon(isExpanded ? Icons.expand_less : Icons.expand_more),
+              const SizedBox(width: 16),
             ],
           ),
-
         ),
         if (isExpanded)
-          ..._categoryWords[category]!.map((subcat) {
-            final bool isSelected = _selectedSubcategory == subcat;
+          ..._categoryWords[category]!.map((word) {
+            final bool isSelected = _selectedWord == word;
             return Padding(
               padding: const EdgeInsets.only(left: 24, top: 8),
               child: ElevatedButton(
-                onPressed: () => _selectSubcategory(subcat),
+                onPressed: () => _selectWord(word),
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
@@ -96,7 +85,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   backgroundColor: isSelected ? Colors.blueAccent : null,
                 ),
                 child: Text(
-                  subcat,
+                  word,
                   style: TextStyle(
                     fontSize: 16,
                     color: isSelected ? Colors.white : null,
@@ -111,13 +100,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   void _continue() {
-    if (_selectedSubcategory == null || _expandedCategory == null) return;
+    if (_selectedWord == null || _expandedCategory == null) return;
 
     final service = context.read<GameProvider>().service;
-    // Hier setzen wir das neue Wort und die Kategorie
     service.settings = service.settings.copyWith(
       category: _expandedCategory!,
-      word: _selectedSubcategory!,
+      word: _selectedWord!,
     );
 
     Navigator.push(
@@ -126,11 +114,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Einstellungen')),
+      appBar: AppBar(title: const Text('Themenauswahl')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -141,7 +128,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             ElevatedButton(
-              onPressed: _selectedSubcategory == null ? null : _continue,
+              onPressed: _selectedWord == null ? null : _continue,
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),

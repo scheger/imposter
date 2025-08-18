@@ -21,6 +21,8 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
   void initState() {
     super.initState();
     final service = context.read<GameProvider>().service;
+
+    // Spieler laden
     _controllers.clear();
     for (var player in service.players) {
       _controllers.add(TextEditingController(text: player.name));
@@ -28,7 +30,11 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
     if (_controllers.isEmpty) {
       _addPlayerField();
     }
+
+    // Imposter-Anzahl aus den aktuellen Settings übernehmen
+    _selectedImposters = service.settings.imposters;
   }
+
 
 
 
@@ -71,8 +77,6 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
     // Einstellungen aktualisieren
     service.settings = service.settings.copyWith(
       imposters: _selectedImposters,
-      // falls du auch das Wort hier auswählst:
-      // word: _selectedWord,
     );
 
     // Spieler neu setzen und Rollen neu vergeben

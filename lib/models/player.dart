@@ -1,11 +1,17 @@
+enum PlayerRole {
+  imposter,
+  wordKnower,
+  detective,
+  spy,
+}
+
 class Player {
   final String name;
-  bool isImposter;
-  bool knowsWord;
+  PlayerRole role;
 
   Player({
     required this.name,
-    this.isImposter = false,
-    this.knowsWord = true,
+    this.role = PlayerRole.wordKnower,
   });
 }
+

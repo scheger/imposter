@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'settings_screen.dart';
+import 'mode_selection_screen.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
@@ -17,7 +17,7 @@ class MenuScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const SettingsScreen()),
+                  MaterialPageRoute(builder: (_) => GameModeSelectionScreen()),
                 );
               },
             ),

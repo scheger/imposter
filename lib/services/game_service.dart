@@ -11,24 +11,19 @@ class GameService {
   }
 
   void assignRoles() {
-    final impostersCount = settings.imposters;
-
-    // Alle Spieler kennen erst mal das Wort
-    for (var player in players) {
-      player.knowsWord = true;
-    }
-
-    // Zufällige Indizes der Imposter auswählen
+    final impostersCount = settings.imposters; // <-- nimmt den gespeicherten Wert
     final random = Random();
-    final imposterIndices = <int>{};
 
-    while (imposterIndices.length < impostersCount && imposterIndices.length < players.length) {
-      imposterIndices.add(random.nextInt(players.length));
+    // Alle Rollen zurücksetzen
+    for (var player in players) {
+      player.role = PlayerRole.wordKnower;
     }
 
-    // Rollen zuweisen
-    for (var index in imposterIndices) {
-      players[index].knowsWord = false; // Imposter
+    // Imposter zufällig auswählen
+    final availableIndexes = List<int>.generate(players.length, (i) => i);
+    for (var i = 0; i < impostersCount && availableIndexes.isNotEmpty; i++) {
+      final randomIndex = availableIndexes.removeAt(random.nextInt(availableIndexes.length));
+      players[randomIndex].role = PlayerRole.imposter;
     }
   }
 
@@ -38,3 +33,4 @@ class GameService {
     players = [];
   }
 }
+

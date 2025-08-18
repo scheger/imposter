@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../main.dart';
+import '../models/player.dart';
 
 class GameSummaryScreen extends StatelessWidget {
   const GameSummaryScreen({super.key});
 
+  String _roleDescription(Player player, String word) {
+    switch (player.role) {
+      case PlayerRole.wordKnower:
+        return 'Wort: $word';
+      case PlayerRole.imposter:
+        return 'Imposter (kennt das Wort nicht)';
+      default:
+        return player.role.toString().split('.').last;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final players = context.read<GameProvider>().service.players;
     final service = context.read<GameProvider>().service;
+    final players = service.players;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Spielerübersicht')),
@@ -18,10 +30,11 @@ class GameSummaryScreen extends StatelessWidget {
           final player = players[index];
           return ListTile(
             title: Text(player.name),
-            subtitle: Text(player.knowsWord ? 'Wort: ${service.settings.word}' : 'Imposter'),
+            subtitle: Text(_roleDescription(player, service.settings.word)),
           );
         },
       ),
     );
   }
 }
+

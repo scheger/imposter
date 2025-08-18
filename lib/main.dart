@@ -53,16 +53,6 @@ class GameProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setImposters(int count) {
-    _service.settings = _service.settings.copyWith(imposters: count);
-    notifyListeners();
-  }
-
-  void updateImposters(int count) {
-  _service.settings = _service.settings.copyWith(imposters: count);
-  notifyListeners();
-  }
-
   void assignRoles() {
     _service.assignRoles();
     notifyListeners();
