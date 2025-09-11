@@ -1,0 +1,27 @@
+{
+  "Marvel": [
+    { "main": "Iron Man", "related": ["Tony Stark", "Avengers"], "hint": "Rüstung" },
+    { "main": "Spider-Man", "related": ["Venom", "Mary Jane"], "hint": "Netze" },
+    { "main": "Hulk", "related": ["Bruce Banner", "Wut"], "hint": "Grün" }
+  ],
+  "DC": [
+    { "main": "Batman", "related": ["Robin", "Joker"], "hint": "Dunkel" },
+    { "main": "Superman", "related": ["Lois Lane", "Krypton"], "hint": "Fliegend" },
+    { "main": "Wonder Woman", "related": ["Amazonen", "Justice League"], "hint": "Stark" }
+  ],
+  "Andere": [
+    { "main": "Hellboy", "related": ["Dämon", "Rot"], "hint": "Hörner" },
+    { "main": "Spawn", "related": ["Dunkelheit", "Antiheld"], "hint": "Höllisch" },
+    { "main": "Kick-Ass", "related": ["Maske", "Comic"], "hint": "Selbstgemacht" }
+  ],
+  "Anime und Manga": [
+    { "main": "Goku", "related": ["Dragon Ball", "Kamehameha"], "hint": "Sagenhaft" },
+    { "main": "Naruto", "related": ["Rasengan", "Konoha"], "hint": "Ninja" },
+    { "main": "Sailor Moon", "related": ["Tuxedo Mask", "Magie"], "hint": "Mond" }
+  ],
+  "Videospiele": [
+    { "main": "Link", "related": ["Zelda", "Hyrule"], "hint": "Schwert" },
+    { "main": "Master Chief", "related": ["Halo", "Spartan"], "hint": "Rüstung" },
+    { "main": "Lara Croft", "related": ["Tomb Raider", "Abenteuer"], "hint": "Archäologin" }
+  ]
+}

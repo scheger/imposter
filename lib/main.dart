@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'services/game_service.dart';
 import 'screens/menu_screen.dart';
 import 'models/game_settings.dart';
 
+// Globale Farben definieren
+const Color kLightBackground = Colors.white;
+const Color kDarkBackground = Colors.black;
+const MaterialColor kPrimarySwatch = Colors.blue;
+
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // edge-to-edge, System UI wird dynamisch im builder gesetzt
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
   runApp(
     MultiProvider(
       providers: [
@@ -21,27 +32,120 @@ class ImposterApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Consumer<GameProvider>(
+      builder: (context, gameProvider, child) {
+        final settings = gameProvider.service.settings;
 
-    return MaterialApp(
-      title: 'Imposter Game',
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.blue,
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.blue,
-      ),
-      themeMode: ThemeMode.system, // Nutzt automatisch das System-Theme
-      home: const MenuScreen(),
+        ThemeMode themeMode;
+        switch (settings.themeMode) {
+          case 'dark':
+            themeMode = ThemeMode.dark;
+            break;
+          case 'light':
+            themeMode = ThemeMode.light;
+            break;
+          default:
+            themeMode = ThemeMode.system;
+        }
+
+        return MaterialApp(
+          title: 'Imposter Game',
+          debugShowCheckedModeBanner: false,
+          builder: (context, child) {
+            final theme = Theme.of(context);
+            final isDark = theme.brightness == Brightness.dark;
+
+            // Dynamische Systemleisten-Farbe passend zum Theme
+            SystemChrome.setSystemUIOverlayStyle(
+              SystemUiOverlayStyle(
+                statusBarColor: Colors.transparent,
+                statusBarIconBrightness:
+                    isDark ? Brightness.light : Brightness.dark,
+                statusBarBrightness:
+                    isDark ? Brightness.dark : Brightness.light,
+                systemNavigationBarColor: theme.scaffoldBackgroundColor,
+                systemNavigationBarIconBrightness:
+                    isDark ? Brightness.light : Brightness.dark,
+              ),
+            );
+
+            return Container(
+              color: theme.scaffoldBackgroundColor,
+              child: SafeArea(
+                top: true,
+                bottom: true,
+                left: false,
+                right: false,
+                child: child ?? const SizedBox.shrink(),
+              ),
+            );
+          },
+
+          // LIGHT THEME
+          theme: ThemeData(
+            brightness: Brightness.light,
+            scaffoldBackgroundColor: kLightBackground,
+            primarySwatch: kPrimarySwatch,
+            appBarTheme: const AppBarTheme(
+              backgroundColor: kLightBackground,
+              elevation: 0,
+              foregroundColor: Colors.black,
+              surfaceTintColor: Colors.transparent, // 🔹 wichtig
+            ),
+
+
+            // HIER: Nur das Popup-Menü runden (aufgeklapptes Menü)
+            dropdownMenuTheme: DropdownMenuThemeData(
+              menuStyle: MenuStyle(
+                shape: WidgetStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                // falls du die Popup-Hintergrundfarbe setzen willst:
+                backgroundColor: WidgetStatePropertyAll(kLightBackground),
+              ),
+            ),
+          ),
+
+          // DARK THEME
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+            scaffoldBackgroundColor: kDarkBackground,
+            primarySwatch: kPrimarySwatch,
+            appBarTheme: const AppBarTheme(
+              backgroundColor: kDarkBackground,
+              elevation: 0,
+              foregroundColor: Colors.white,
+              surfaceTintColor: Colors.transparent, // 🔹
+            ),
+
+            dropdownMenuTheme: DropdownMenuThemeData(
+              menuStyle: MenuStyle(
+                shape: WidgetStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                backgroundColor: WidgetStatePropertyAll(kDarkBackground),
+              ),
+            ),
+          ),
+
+          themeMode: themeMode,
+          home: const MenuScreen(),
+        );
+      },
     );
   }
 }
 
+// --- Provider-Klassen bleiben unverändert ---
 class GameProvider extends ChangeNotifier {
   final GameService _service = GameService();
-
   GameService get service => _service;
+
+  bool get isSoundOn => _service.settings.soundOn;
 
   void updateSettings(GameSettings settings) {
     _service.settings = settings;
@@ -62,13 +166,15 @@ class GameProvider extends ChangeNotifier {
     _service.resetGame();
     notifyListeners();
   }
+
+  void playSoundIfEnabled(void Function() play) {
+    if (isSoundOn) play();
+  }
 }
 
 class ThemeProvider extends ChangeNotifier {
   bool _isDarkMode = false;
-
   bool get isDarkMode => _isDarkMode;
-
   void toggleTheme(bool isOn) {
     _isDarkMode = isOn;
     notifyListeners();

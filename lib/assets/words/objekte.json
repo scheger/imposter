@@ -1,0 +1,21 @@
+{
+  "Alltagsgegenstände": [
+    { "main": "Stuhl", "related": ["Sessel", "Hocker"], "hint": "Sitzend" },
+    { "main": "Tisch", "related": ["Schreibtisch", "Couchtisch"], "hint": "Flach" },
+    { "main": "Lampe", "related": ["Kerze", "Leuchte"], "hint": "Leuchtend" },
+    { "main": "Tasse", "related": ["Becher", "Glas"], "hint": "Trinkend" },
+    { "main": "Löffel", "related": ["Gabel", "Messer"], "hint": "Essend" },
+    { "main": "Pfanne", "related": ["Topf", "Wok"], "hint": "Bratend" },
+    { "main": "Buch", "related": ["Heft", "Zeitschrift"], "hint": "Lesend" },
+    { "main": "Stift", "related": ["Kugelschreiber", "Bleistift"], "hint": "Schreibend" },
+    { "main": "Lineal", "related": ["Geodreieck", "Zirkel"], "hint": "Messend" },
+    { "main": "Schlüssel", "related": ["Schloss", "Tür"], "hint": "Öffnend" },
+    { "main": "Uhr", "related": ["Wecker", "Armbanduhr"], "hint": "Tickend" },
+    { "main": "Brille", "related": ["Kontaktlinse", "Sehhilfe"], "hint": "Sehend" }
+  ],
+  "Technik": [
+    { "main": "Handy", "related": ["Smartphone", "Telefon"], "hint": "Klingelnd" },
+    { "main": "Laptop", "related": ["Computer", "Tablet"], "hint": "Arbeitend" },
+    { "main": "Fernseher", "related": ["Radio", "Bildschirm"], "hint": "Schaubar" }
+  ]
+}

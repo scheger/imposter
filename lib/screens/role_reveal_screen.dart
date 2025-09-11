@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../main.dart';
 import '../models/player.dart';
+import '../models/game_settings.dart';
 import 'game_summary_screen.dart';
 
 class RoleRevealScreen extends StatefulWidget {
@@ -16,16 +17,52 @@ class _RoleRevealScreenState extends State<RoleRevealScreen> {
   bool _revealed = false;
   bool _showStartPlayer = false; // Flag to show start player announcement
 
-  String _roleText(Player player, String word, String hint, bool isStartPlayer) {
-    if (player.isImposter) {
-      if (isStartPlayer) {
-        return 'Du bist der Imposter!\n\nDein Wort: $hint';
+    String _roleText(
+      Player player,
+      GameSettings settings,
+      bool isStartPlayer,
+    ) {
+      if (settings.mode == 'classic') {
+        // Classic Mode (Crew kennt Wort, Imposter nicht)
+        if (player.isImposter) {
+          final showHint = switch (settings.imposterHintsMode) {
+            'always' => true,
+            'never' => false,
+            'firstOnly' => isStartPlayer,
+            _ => false,
+          };
+
+          if (showHint) {
+            return 'Du bist der Imposter!\n\nDein Wort: ${settings.imposterWordQuestion}';
+          } else {
+            return 'Du bist der Imposter!';
+          }
+        } else {
+          return 'Dein Wort: ${settings.crewWordQuestion}';
+        }
       }
-      return 'Du bist der Imposter!';
-    } else {
-      return 'Dein Wort: $word';
+
+      if (settings.mode == 'undercover') {
+        // Undercover Mode (Crew & Imposter kriegen unterschiedliche Fragen)
+        if (player.isImposter) {
+          return 'Deine Frage: ${settings.imposterWordQuestion}';
+        } else {
+          return 'Deine Frage: ${settings.crewWordQuestion}';
+        }
+      }
+
+      if (settings.mode == 'similar') {
+        // Similar Mode (Imposter kriegt ähnliches Wort)
+        if (player.isImposter) {
+          return 'Dein Wort: ${settings.imposterWordQuestion}';
+        } else {
+          return 'Dein Wort: ${settings.crewWordQuestion}';
+        }
+      }
+
+      return 'Unbekannter Modus!';
     }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +90,10 @@ class _RoleRevealScreenState extends State<RoleRevealScreen> {
                   ),
                   const SizedBox(height: 30),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20), 
+                      textStyle: const TextStyle(fontSize: 22), // Schrift größer
+                    ),
                     child: const Text('Auflösen'),
                     onPressed: () {
                       Navigator.pushReplacement(
@@ -80,7 +121,7 @@ class _RoleRevealScreenState extends State<RoleRevealScreen> {
                       ),
                       const Spacer(flex: 1),
                       Text(
-                        _roleText(player, settings.word, settings.hint, isStartPlayer),
+                        _roleText(player, settings, isStartPlayer),
                         style: const TextStyle(fontSize: 24),
                         textAlign: TextAlign.center,
                       ),
@@ -97,6 +138,10 @@ class _RoleRevealScreenState extends State<RoleRevealScreen> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 20),
                         child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20), 
+                            textStyle: const TextStyle(fontSize: 22), // Schrift größer
+                          ),
                           child: const Text('Weiter'),
                           onPressed: () {
                             if (_currentIndex < players.length - 1) {
@@ -117,6 +162,10 @@ class _RoleRevealScreenState extends State<RoleRevealScreen> {
                   )
                 // 🔹 Button „Spieler anzeigen“
                 : ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20), 
+                      textStyle: const TextStyle(fontSize: 22), // Schrift größer
+                    ),
                     child: Text('${player.name} anzeigen'),
                     onPressed: () => setState(() => _revealed = true),
                   ),

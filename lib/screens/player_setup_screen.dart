@@ -82,6 +82,7 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
     // Spieler neu setzen und Rollen neu vergeben
     service.setupPlayers(names);
     service.assignRoles(); // !!! Wichtig, damit Imposter neu verteilt werden
+    service.prepareWordsForMode(); // Wörter für den Modus vorbereiten
 
     Navigator.pushReplacement(
       context,
@@ -92,6 +93,10 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final playerCount =
+        _controllers.where((c) => c.text.trim().isNotEmpty).length;
+    final impostersTooMany = _selectedImposters >= playerCount;
+
     return Scaffold(
       appBar: AppBar(title: const Text('Spieler eingeben')),
       body: Padding(
@@ -108,6 +113,7 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
                 ),
                 DropdownButton<int>(
                   value: _selectedImposters,
+                  borderRadius: BorderRadius.circular(12),
                   items: _imposterOptions.map((int value) {
                     return DropdownMenuItem<int>(
                       value: value,
@@ -133,7 +139,7 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
                   Expanded(
                     child: TextField(
                       controller: _controllers[index],
-                      // Hier: erlaubte Zeichen inklusive äöüÄÖÜß
+                      onChanged: (_) => setState(() {}), // sorgt für Neuberechnung playerCount
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(
                           RegExp(r"[a-zA-ZäöüÄÖÜß0-9\s\-_.]"),
@@ -169,7 +175,7 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16),
         child: ElevatedButton(
-          onPressed: _startGame,
+          onPressed: impostersTooMany || playerCount < 2 ? null : _startGame,
           style: ElevatedButton.styleFrom(
             minimumSize: const Size.fromHeight(50),
           ),
@@ -178,4 +184,5 @@ class _PlayerSetupScreenState extends State<PlayerSetupScreen> {
       ),
     );
   }
+
 }

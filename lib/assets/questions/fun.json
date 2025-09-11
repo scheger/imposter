@@ -1,0 +1,23 @@
+{
+    "Absurde Fragen": [
+        { "main": "Welcher Star Wars Charakter wäre Smash?", "hint": "Welcher Star Wars Charakter ist dein Lieblingscharakter?" },
+        { "main": "Welche Gemüsesorte wärst du im nächsten Leben?", "hint": "Welches Gemüse isst du am liebsten?" },
+        { "main": "Welche Superkraft wäre total nutzlos im Alltag?", "hint": "Welche Superkraft hättest du gerne?" },
+        { "main": "Welches Tier würdest du in einer Disco mitnehmen?", "hint": "Welches Tier ist dein Lieblingstier?" },
+        { "main": "Welchen Song würdest du in einem Fahrstuhl laut singen?", "hint": "Welcher Song ist dein Lieblingssong?" },
+        { "main": "Welches Haushaltsgerät beschreibt am besten deinen Charakter?", "hint": "Welches Haushaltsgerät benutzt du am meisten?" },
+        { "main": "Welche Filmfigur würdest du auf ein Bewerbungsgespräch mitnehmen?", "hint": "Welche Filmfigur magst du am meisten?" },
+        { "main": "Welche Eissorte wärst du, wenn du ein Eis wärst?", "hint": "Welche Eissorte isst du am liebsten?" },
+        { "main": "Welches Möbelstück wärst du in einem IKEA-Katalog?", "hint": "Welches Möbelstück gefällt dir am besten?" },
+        { "main": "Welches Märchen wäre in deiner Version völlig verrückt?", "hint": "Welches Märchen magst du am liebsten?" }
+    ],
+    "Peinliche Szenarien": [
+        { "main": "In welchem Moment würdest du am liebsten unsichtbar sein?", "hint": "Wann war dir das letzte Mal peinlich?" },
+        { "main": "Welche Ausrede würdest du bringen, wenn du nackt in der Küche erwischt wirst?", "hint": "Welche Ausrede benutzt du am häufigsten?" },
+        { "main": "Was wäre das Schlimmste, das du aus Versehen ins Klassenzimmer rufen könntest?", "hint": "Was war das Lustigste, das du mal im Unterricht erlebt hast?" },
+        { "main": "Welche App wäre am peinlichsten, wenn sie deinen Verlauf veröffentlicht?", "hint": "Welche App benutzt du am meisten?" },
+        { "main": "Welches Lied wäre super peinlich, wenn dein Handy es laut in der U-Bahn abspielt?", "hint": "Welches Lied hörst du am meisten?" },
+        { "main": "Was würdest du tun, wenn du beim Karaoke mitten im Song auf Toilette musst?", "hint": "Welchen Song würdest du beim Karaoke singen?" },
+        { "main": "Welche Superheldenkraft würde dich in einer peinlichen Situation am meisten blamieren?", "hint": "Welche Superheldenkraft hättest du gerne?" }
+    ]
+}

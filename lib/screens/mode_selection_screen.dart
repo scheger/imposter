@@ -7,15 +7,31 @@ class GameModeSelectionScreen extends StatelessWidget {
   GameModeSelectionScreen({super.key});
   
   final List<Map<String, String>> modes = [
-    {'title': 'Klassisch', 'description': 'Standardmodus – Imposter kennt das Wort nicht, muss es erraten.'},
-    {'title': 'Undercover Question', 'description': 'Imposter erhällt ein Frage, ohne zu wissen das sie anders ist'},
-    {'title': 'Fast gleich', 'description': 'Imposter bekommt ein ähnliches Wort und weiß nicht, dass es anders ist.'},
-    {'title': 'Wortkrieg', 'description': 'Zwei Teams mit unterschiedlichen Wörtern spielen gegeneinander.'},
+    {
+      'key': 'classic',
+      'title': 'Klassisch',
+      'description': 'Standardmodus – Imposter kennt das Wort nicht, muss es erraten.'
+    },
+    {
+      'key': 'undercover',
+      'title': 'Undercover Question',
+      'description': 'Imposter erhält eine andere Frage, ohne es zu wissen.'
+    },
+    {
+      'key': 'similar',
+      'title': 'Fast gleich',
+      'description': 'Imposter bekommt ein ähnliches Wort und weiß nicht, dass es anders ist.'
+    },
+    {
+      'key': 'wordwar',
+      'title': 'Wortkrieg',
+      'description': 'Zwei Teams mit unterschiedlichen Wörtern spielen gegeneinander.'
+    },
   ];
 
-  void _selectMode(BuildContext context, String mode) {
+  void _selectMode(BuildContext context, String modeKey) {
     final service = context.read<GameProvider>().service;
-    service.settings = service.settings.copyWith(mode: mode);
+    service.settings = service.settings.copyWith(mode: modeKey);
 
     Navigator.push(
       context,
@@ -25,7 +41,7 @@ class GameModeSelectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double buttonSize = MediaQuery.of(context).size.width / 2 - 24; // für zwei pro Zeile
+    final double buttonSize = MediaQuery.of(context).size.width / 2 - 24; 
 
     return Scaffold(
       appBar: AppBar(title: const Text('Spielmodus wählen')),
@@ -37,7 +53,7 @@ class GameModeSelectionScreen extends StatelessWidget {
           mainAxisSpacing: 12,
           children: modes.map((mode) {
             return InkWell(
-              onTap: () => _selectMode(context, mode['title']!),
+              onTap: () => _selectMode(context, mode['key']!), // 🔑 key statt title
               borderRadius: BorderRadius.circular(20),
               child: Container(
                 width: buttonSize,
@@ -53,7 +69,7 @@ class GameModeSelectionScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          mode['title']!,
+                          mode['title']!, // 🎨 Anzeige bleibt deutsch
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -79,4 +95,5 @@ class GameModeSelectionScreen extends StatelessWidget {
     );
   }
 }
+
 
