@@ -1,11 +1,33 @@
 import 'dart:math';
 import '../models/player.dart';
 import '../models/game_settings.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class GameService {
   GameSettings settings = GameSettings();
   List<Player> players = [];
   int? startPlayerIndex;
+
+  // 🔹 Einstellungen laden
+  Future<void> loadSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+    final jsonString = prefs.getString('game_settings');
+    if (jsonString != null) {
+      settings = GameSettings.fromRawJson(jsonString);
+    }
+  }
+
+  // 🔹 Einstellungen speichern
+  Future<void> saveSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('game_settings', settings.toRawJson());
+  }
+
+  // 🔹 Settings updaten + speichern
+  void updateSettings(GameSettings newSettings) async {
+    settings = newSettings;
+    await saveSettings();
+  }
 
   void setupPlayers(List<String> names) {
     players = names.map((name) => Player(name: name)).toList();
@@ -63,9 +85,10 @@ class GameService {
     }
   }
 
-  void resetGame() {
+  void resetGame() async {
     settings = GameSettings();
     players = [];
     startPlayerIndex = null;
+    await saveSettings();
   }
 }

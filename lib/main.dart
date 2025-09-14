@@ -10,8 +10,11 @@ const Color kLightBackground = Colors.white;
 const Color kDarkBackground = Colors.black;
 const MaterialColor kPrimarySwatch = Colors.blue;
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+
+  final gameService = GameService();
+  await gameService.loadSettings();
 
   // edge-to-edge, System UI wird dynamisch im builder gesetzt
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
@@ -19,7 +22,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => GameProvider()),
+        ChangeNotifierProvider(create: (_) => GameProvider(gameService)),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
       child: const ImposterApp(),
@@ -142,13 +145,15 @@ class ImposterApp extends StatelessWidget {
 
 // --- Provider-Klassen bleiben unverändert ---
 class GameProvider extends ChangeNotifier {
-  final GameService _service = GameService();
+  final GameService _service;
+  GameProvider(this._service);
+
   GameService get service => _service;
 
   bool get isSoundOn => _service.settings.soundOn;
 
   void updateSettings(GameSettings settings) {
-    _service.settings = settings;
+    _service.updateSettings(settings);
     notifyListeners();
   }
 

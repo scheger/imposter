@@ -4,6 +4,7 @@ import '../main.dart';
 import '../models/player.dart';
 import '../models/game_settings.dart';
 import 'game_summary_screen.dart';
+import 'game_play_screen.dart';
 
 class RoleRevealScreen extends StatefulWidget {
   const RoleRevealScreen({super.key});
@@ -15,54 +16,41 @@ class RoleRevealScreen extends StatefulWidget {
 class _RoleRevealScreenState extends State<RoleRevealScreen> {
   int _currentIndex = 0;
   bool _revealed = false;
-  bool _showStartPlayer = false; // Flag to show start player announcement
+  bool _showStartPlayer = false;
 
-    String _roleText(
-      Player player,
-      GameSettings settings,
-      bool isStartPlayer,
-    ) {
-      if (settings.mode == 'classic') {
-        // Classic Mode (Crew kennt Wort, Imposter nicht)
-        if (player.isImposter) {
-          final showHint = switch (settings.imposterHintsMode) {
-            'always' => true,
-            'never' => false,
-            'firstOnly' => isStartPlayer,
-            _ => false,
-          };
-
-          if (showHint) {
-            return 'Du bist der Imposter!\n\nDein Wort: ${settings.imposterWordQuestion}';
-          } else {
-            return 'Du bist der Imposter!';
-          }
+  String _roleText(Player player, GameSettings settings, bool isStartPlayer) {
+    if (settings.mode == 'classic') {
+      if (player.isImposter) {
+        final showHint = switch (settings.imposterHintsMode) {
+          'always' => true,
+          'never' => false,
+          'firstOnly' => isStartPlayer,
+          _ => false,
+        };
+        if (showHint) {
+          return 'Du bist der Imposter!\n\nHinweis: ${settings.imposterWordQuestion}';
         } else {
-          return 'Dein Wort: ${settings.crewWordQuestion}';
+          return 'Du bist der Imposter!';
         }
+      } else {
+        return 'Dein Wort: ${settings.crewWordQuestion}';
       }
-
-      if (settings.mode == 'undercover') {
-        // Undercover Mode (Crew & Imposter kriegen unterschiedliche Fragen)
-        if (player.isImposter) {
-          return 'Deine Frage: ${settings.imposterWordQuestion}';
-        } else {
-          return 'Deine Frage: ${settings.crewWordQuestion}';
-        }
-      }
-
-      if (settings.mode == 'similar') {
-        // Similar Mode (Imposter kriegt ähnliches Wort)
-        if (player.isImposter) {
-          return 'Dein Wort: ${settings.imposterWordQuestion}';
-        } else {
-          return 'Dein Wort: ${settings.crewWordQuestion}';
-        }
-      }
-
-      return 'Unbekannter Modus!';
     }
 
+    if (settings.mode == 'undercover') {
+      return player.isImposter
+          ? 'Deine Frage: ${settings.imposterWordQuestion}'
+          : 'Deine Frage: ${settings.crewWordQuestion}';
+    }
+
+    if (settings.mode == 'similar') {
+      return player.isImposter
+          ? 'Dein Wort: ${settings.imposterWordQuestion}'
+          : 'Dein Wort: ${settings.crewWordQuestion}';
+    }
+
+    return 'Unbekannter Modus!';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +59,7 @@ class _RoleRevealScreenState extends State<RoleRevealScreen> {
     final settings = service.settings;
     final player = players[_currentIndex];
     final bool isStartPlayer = service.startPlayerIndex == _currentIndex;
+    final startPlayer = players[service.startPlayerIndex!];
 
     return Scaffold(
       appBar: AppBar(title: const Text('Rollenanzeige')),
@@ -81,7 +70,7 @@ class _RoleRevealScreenState extends State<RoleRevealScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "${players[service.startPlayerIndex!].name} beginnt die Runde!",
+                    "${startPlayer.name} beginnt die Runde!",
                     style: const TextStyle(
                       fontSize: 26,
                       fontWeight: FontWeight.bold,
@@ -91,19 +80,30 @@ class _RoleRevealScreenState extends State<RoleRevealScreen> {
                   const SizedBox(height: 30),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20), 
-                      textStyle: const TextStyle(fontSize: 22), // Schrift größer
+                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                      textStyle: const TextStyle(fontSize: 22),
                     ),
-                    child: const Text('Auflösen'),
+                    child: Text(settings.enableTimer ? 'Runde starten' : 'Auflösen'),
                     onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const GameSummaryScreen(),
-                        ),
-                      );
+                      if (settings.enableTimer) {
+                        // Timer aktiviert → GamePlayScreen starten
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const GamePlayScreen(),
+                          ),
+                        );
+                      } else {
+                        // Kein Timer → direkt GameSummaryScreen
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const GameSummaryScreen(),
+                          ),
+                        );
+                      }
                     },
-                  )
+                  ),
                 ],
               )
             // 🔹 Rollenanzeige
@@ -139,8 +139,8 @@ class _RoleRevealScreenState extends State<RoleRevealScreen> {
                         padding: const EdgeInsets.only(bottom: 20),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20), 
-                            textStyle: const TextStyle(fontSize: 22), // Schrift größer
+                            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                            textStyle: const TextStyle(fontSize: 22),
                           ),
                           child: const Text('Weiter'),
                           onPressed: () {
@@ -150,7 +150,7 @@ class _RoleRevealScreenState extends State<RoleRevealScreen> {
                                 _revealed = false;
                               });
                             } else {
-                              // 🔹 Startspieler-Anzeige statt direkt GameSummaryScreen
+                              // 🔹 Startspieler-Anzeige immer zeigen
                               setState(() {
                                 _showStartPlayer = true;
                               });
@@ -163,8 +163,8 @@ class _RoleRevealScreenState extends State<RoleRevealScreen> {
                 // 🔹 Button „Spieler anzeigen“
                 : ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20), 
-                      textStyle: const TextStyle(fontSize: 22), // Schrift größer
+                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                      textStyle: const TextStyle(fontSize: 22),
                     ),
                     child: Text('${player.name} anzeigen'),
                     onPressed: () => setState(() => _revealed = true),

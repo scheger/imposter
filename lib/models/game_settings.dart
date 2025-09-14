@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class GameSettings {
   String category;
   String mode; // 'classic' | 'similar' | 'undercover' | ...
@@ -71,4 +73,31 @@ class GameSettings {
     imposterWordQuestion = '';
     relatedWords = [];
   }
+
+  // 🔹 Neu: JSON-Export
+  Map<String, dynamic> toJson() {
+    return {
+      'showCategoryOnRandom': showCategoryOnRandom,
+      'enableTimer': enableTimer,
+      'timerSeconds': timerSeconds,
+      'imposterHintsMode': imposterHintsMode,
+      'soundOn': soundOn,
+      'themeMode': themeMode,
+    };
+  }
+
+  factory GameSettings.fromJson(Map<String, dynamic> json) {
+    return GameSettings(
+      showCategoryOnRandom: json['showCategoryOnRandom'] ?? true,
+      enableTimer: json['enableTimer'] ?? false,
+      timerSeconds: json['timerSeconds'] ?? 30,
+      imposterHintsMode: json['imposterHintsMode'] ?? 'firstOnly',
+      soundOn: json['soundOn'] ?? true,
+      themeMode: json['themeMode'] ?? 'system',
+    );
+  }
+
+  String toRawJson() => jsonEncode(toJson());
+  factory GameSettings.fromRawJson(String str) =>
+      GameSettings.fromJson(jsonDecode(str));
 }
