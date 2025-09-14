@@ -56,15 +56,15 @@ class _GamePlayScreenState extends State<GamePlayScreen> {
 
   // ─── Phase-Start-Methoden ───────────────────────────────────────────────────
   void _startPreparePhase() {
+    final settings = context.read<GameProvider>().service.settings;
     setState(() {
       _phase = 'prepare';
-      _maxTime = 15;
+      _maxTime = settings.prepareSeconds;
       _timeLeft = _maxTime;
       _paused = false;
     });
     _startSecondTimer(() {
-      // nach Vorbereitung direkt in die Spielphase für aktuellen Spieler
-      _startPlayPhase(context.read<GameProvider>().service.settings.timerSeconds);
+      _startPlayPhase(settings.timerSeconds);
     });
   }
 
@@ -85,22 +85,25 @@ class _GamePlayScreenState extends State<GamePlayScreen> {
   }
 
   void _startBufferPhase() {
+    final settings = context.read<GameProvider>().service.settings;
+
     if (_currentPlayerIndex >= _activePlayers.length - 1) {
-      // Wenn letzter Spieler → direkt Diskussion (kein Puffer)
       _startDiscussionPhase();
       return;
     }
+
     setState(() {
       _phase = 'buffer';
-      _maxTime = 5;
+      _maxTime = settings.bufferSeconds;
       _timeLeft = _maxTime;
       _paused = false;
     });
+
     _startSecondTimer(() {
       setState(() {
         _currentPlayerIndex++;
       });
-      _startPlayPhase(context.read<GameProvider>().service.settings.timerSeconds);
+      _startPlayPhase(settings.timerSeconds);
     });
   }
 

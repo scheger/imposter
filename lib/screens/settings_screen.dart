@@ -36,28 +36,64 @@ class SettingsScreen extends StatelessWidget {
           // eingerückte Zeit-Auswahl
           if (settings.enableTimer)
             Padding(
-              padding: const EdgeInsets.only(left: 32.0), // 👈 Einrückung
-              child: ListTile(
-                title: const Text("Zeit pro Spieler"),
-                trailing: DropdownButton<int>(
-                  value: settings.timerSeconds,
-                  borderRadius: BorderRadius.circular(12),
-                  items: [15, 30, 45, 60]
-                      .map((s) => DropdownMenuItem(
-                            value: s,
-                            child: Text("$s s"),
-                          ))
-                      .toList(),
-                  onChanged: (val) {
-                    if (val != null) {
-                      gameProvider.updateSettings(
-                        settings.copyWith(timerSeconds: val),
-                      );
-                    }
-                  },
-                ),
+              padding: const EdgeInsets.only(left: 32.0),
+              child: Column(
+                children: [
+                  ListTile(
+                    title: const Text("Zeit pro Spieler"),
+                    trailing: DropdownButton<int>(
+                      value: settings.timerSeconds,
+                      items: [15, 30, 45, 60].map((s) => DropdownMenuItem(
+                        value: s,
+                        child: Text("$s s"),
+                      )).toList(),
+                      onChanged: (val) {
+                        if (val != null) {
+                          gameProvider.updateSettings(
+                            settings.copyWith(timerSeconds: val),
+                          );
+                        }
+                      },
+                    ),
+                  ),
+                  ListTile(
+                    title: const Text("Überlegezeit"),
+                    trailing: DropdownButton<int>(
+                      value: settings.prepareSeconds,
+                      items: [10, 15, 20, 30, 60].map((s) => DropdownMenuItem(
+                        value: s,
+                        child: Text("$s s"),
+                      )).toList(),
+                      onChanged: (val) {
+                        if (val != null) {
+                          gameProvider.updateSettings(
+                            settings.copyWith(timerSeconds: val),
+                          );
+                        }
+                      },
+                    ),
+                  ),
+                  ListTile(
+                    title: const Text("Pufferzeit"),
+                    trailing: DropdownButton<int>(
+                      value: settings.bufferSeconds,
+                      items: [2, 3, 5, 10].map((s) => DropdownMenuItem(
+                        value: s,
+                        child: Text("$s s"),
+                      )).toList(),
+                      onChanged: (val) {
+                        if (val != null) {
+                          gameProvider.updateSettings(
+                            settings.copyWith(timerSeconds: val),
+                          );
+                        }
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
+
 
           ListTile(
             title: const Text("Imposter Hinweise"),

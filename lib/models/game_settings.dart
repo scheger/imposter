@@ -12,9 +12,14 @@ class GameSettings {
   bool showCategoryOnRandom;     // 1: Kategorie bei Zufall trotzdem anzeigen
   bool enableTimer;              // 2: Timer an/aus
   int timerSeconds;              // Zeit pro Spieler
+  int prepareSeconds;            // Zeit Überlegephase
+  int bufferSeconds;             // Zeit Pufferphase
   String imposterHintsMode;      // 3: "always" | "never" | "firstOnly"
   bool soundOn;                  // 4: Sound ein/aus
   String themeMode;              // 5: "system" | "dark" | "light"
+
+  List<String> categoryOrderWords;      // Reihenfolge der Kategorien (für CategoryService)
+  List<String> categoryOrderQuestions;  // Reihenfolge der Fragen-Kategorien
 
   GameSettings({
     this.category = '',
@@ -28,9 +33,14 @@ class GameSettings {
     this.showCategoryOnRandom = true,
     this.enableTimer = false,
     this.timerSeconds = 30,
+    this.prepareSeconds = 15,
+    this.bufferSeconds = 5,
     this.imposterHintsMode = 'firstOnly',
     this.soundOn = true,
     this.themeMode = 'system',
+
+    this.categoryOrderWords = const [],
+    this.categoryOrderQuestions = const [],
   });
 
   GameSettings copyWith({
@@ -45,9 +55,14 @@ class GameSettings {
     bool? showCategoryOnRandom,
     bool? enableTimer,
     int? timerSeconds,
+    int? prepareSeconds,
+    int? bufferSeconds,
     String? imposterHintsMode,
     bool? soundOn,
     String? themeMode,
+
+    List<String>? categoryOrderWords,
+    List<String>? categoryOrderQuestions,
   }) {
     return GameSettings(
       category: category ?? this.category,
@@ -61,9 +76,15 @@ class GameSettings {
       showCategoryOnRandom: showCategoryOnRandom ?? this.showCategoryOnRandom,
       enableTimer: enableTimer ?? this.enableTimer,
       timerSeconds: timerSeconds ?? this.timerSeconds,
+      prepareSeconds: prepareSeconds ?? this.prepareSeconds,
+      bufferSeconds: bufferSeconds ?? this.bufferSeconds,
       imposterHintsMode: imposterHintsMode ?? this.imposterHintsMode,
       soundOn: soundOn ?? this.soundOn,
       themeMode: themeMode ?? this.themeMode,
+
+      // Reihenfolge der Kategorien
+      categoryOrderWords: categoryOrderWords ?? this.categoryOrderWords,
+      categoryOrderQuestions: categoryOrderQuestions ?? this.categoryOrderQuestions,
     );
   }
 
@@ -80,9 +101,13 @@ class GameSettings {
       'showCategoryOnRandom': showCategoryOnRandom,
       'enableTimer': enableTimer,
       'timerSeconds': timerSeconds,
+      'prepareSeconds': prepareSeconds,
+      'bufferSeconds': bufferSeconds,
       'imposterHintsMode': imposterHintsMode,
       'soundOn': soundOn,
       'themeMode': themeMode,
+      'categoryOrderWords': categoryOrderWords,
+      'categoryOrderQuestions': categoryOrderQuestions,
     };
   }
 
@@ -91,9 +116,13 @@ class GameSettings {
       showCategoryOnRandom: json['showCategoryOnRandom'] ?? true,
       enableTimer: json['enableTimer'] ?? false,
       timerSeconds: json['timerSeconds'] ?? 30,
+      prepareSeconds: json['prepareSeconds'] ?? 15,
+      bufferSeconds: json['bufferSeconds'] ?? 5,
       imposterHintsMode: json['imposterHintsMode'] ?? 'firstOnly',
       soundOn: json['soundOn'] ?? true,
       themeMode: json['themeMode'] ?? 'system',
+      categoryOrderWords: List<String>.from(json['categoryOrderWords'] ?? []),
+      categoryOrderQuestions: List<String>.from(json['categoryOrderQuestions'] ?? []),
     );
   }
 

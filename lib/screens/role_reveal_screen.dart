@@ -83,9 +83,13 @@ class _RoleRevealScreenState extends State<RoleRevealScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                       textStyle: const TextStyle(fontSize: 22),
                     ),
-                    child: Text(settings.enableTimer ? 'Runde starten' : 'Auflösen'),
+                    child: Text(
+                      (settings.enableTimer && settings.mode != 'undercover') 
+                          ? 'Runde starten' 
+                          : 'Auflösen',
+                    ),
                     onPressed: () {
-                      if (settings.enableTimer) {
+                      if (settings.enableTimer && settings.mode != 'undercover') {
                         // Timer aktiviert → GamePlayScreen starten
                         Navigator.pushReplacement(
                           context,

@@ -4,17 +4,21 @@ import 'package:provider/provider.dart';
 import 'services/game_service.dart';
 import 'screens/menu_screen.dart';
 import 'models/game_settings.dart';
+import 'services/category_service.dart';
 
 // Globale Farben definieren
 const Color kLightBackground = Colors.white;
 const Color kDarkBackground = Colors.black;
 const MaterialColor kPrimarySwatch = Colors.blue;
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final gameService = GameService();
   await gameService.loadSettings();
+
+  final categoryService = CategoryService(gameService.settings);
+  await categoryService.init();
 
   // edge-to-edge, System UI wird dynamisch im builder gesetzt
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
@@ -24,6 +28,7 @@ void main() async{
       providers: [
         ChangeNotifierProvider(create: (_) => GameProvider(gameService)),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => categoryService),
       ],
       child: const ImposterApp(),
     ),

@@ -1,30 +1,33 @@
 {
-  "Zahlenfragen": [
-    { "main": "Wie viele Stunden schläfst du pro Nacht?", "hint": "Wie viele Stunden pro Woche schaust du Serien?" },
-    { "main": "Wie oft gehst du pro Woche einkaufen?", "hint": "Wie oft isst du pro Woche Nudeln?" },
-    { "main": "Wie viele Tassen Kaffee trinkst du am Tag?", "hint": "Wie viele Gläser Wasser trinkst du am Tag?" },
-    { "main": "Wie viele Paar Schuhe besitzt du?", "hint": "Wie viele Jacken besitzt du?" },
-    { "main": "Wie viele Bücher hast du dieses Jahr gelesen?", "hint": "Wie viele Filme hast du dieses Jahr gesehen?" },
-    { "main": "Wie viele Apps benutzt du täglich?", "hint": "Wie viele Spiele hast du auf deinem Handy?" }
-  ],
-  "Personenfragen": [
-    { "main": "Wer ist dein Lieblingsschauspieler?", "hint": "Wer ist dein Lieblingssänger?" },
-    { "main": "Wen würdest du als Vorbild bezeichnen?", "hint": "Wen würdest du gerne mal persönlich treffen?" },
-    { "main": "Wer war dein Lieblingslehrer in der Schule?", "hint": "Wer war dein lustigster Lehrer in der Schule?" },
-    { "main": "Mit wem verbringst du am meisten Zeit?", "hint": "Mit wem telefonierst du am meisten?" },
-    { "main": "Wen würdest du auf eine einsame Insel mitnehmen?", "hint": "Wen würdest du lieber nie wieder sehen?" }
-  ],
-  "Orte": [
-    { "main": "In welchem Land würdest du gerne Urlaub machen?", "hint": "In welchem Land würdest du niemals Urlaub machen?" },
-    { "main": "Wo bist du zuletzt mit dem Zug hingefahren?", "hint": "Wo bist du zuletzt mit dem Auto hingefahren?" },
-    { "main": "Welches Restaurant besuchst du am liebsten?", "hint": "In welchem Café bist du am liebsten?" },
-    { "main": "Wo gehst du am liebsten spazieren?", "hint": "Wo gehst du am liebsten einkaufen?" },
-    { "main": "In welcher Stadt würdest du gerne leben?", "hint": "In welcher Stadt würdest du ungern leben?" }
-  ],
-  "Allgemein": [
-    { "main": "Was machst du als Erstes nach dem Aufstehen?", "hint": "Was machst du als Letztes vor dem Schlafengehen?" },
-    { "main": "Wie oft frühstückst du?", "hint": "Wie oft isst du Abendbrot?" },
-    { "main": "Welche Jahreszeit magst du am liebsten?", "hint": "Welche Jahreszeit magst du am wenigsten?" },
-    { "main": "Was ist dein Lieblingsgetränk?", "hint": "Was ist dein unbeliebtestes Getränk?" }
-  ]
+  "category": "Everyday",
+  "subcategories": {
+    "Zahlenfragen": [
+      { "main": "Wie viele Stunden schläfst du pro Nacht?", "hint": "Wie viele Stunden pro Woche schaust du Serien?" },
+      { "main": "Wie oft gehst du pro Woche einkaufen?", "hint": "Wie oft isst du pro Woche Nudeln?" },
+      { "main": "Wie viele Tassen Kaffee trinkst du am Tag?", "hint": "Wie viele Gläser Wasser trinkst du am Tag?" },
+      { "main": "Wie viele Paar Schuhe besitzt du?", "hint": "Wie viele Jacken besitzt du?" },
+      { "main": "Wie viele Bücher hast du dieses Jahr gelesen?", "hint": "Wie viele Filme hast du dieses Jahr gesehen?" },
+      { "main": "Wie viele Apps benutzt du täglich?", "hint": "Wie viele Spiele hast du auf deinem Handy?" }
+    ],
+    "Personenfragen": [
+      { "main": "Wer ist dein Lieblingsschauspieler?", "hint": "Wer ist dein Lieblingssänger?" },
+      { "main": "Wen würdest du als Vorbild bezeichnen?", "hint": "Wen würdest du gerne mal persönlich treffen?" },
+      { "main": "Wer war dein Lieblingslehrer in der Schule?", "hint": "Wer war dein lustigster Lehrer in der Schule?" },
+      { "main": "Mit wem verbringst du am meisten Zeit?", "hint": "Mit wem telefonierst du am meisten?" },
+      { "main": "Wen würdest du auf eine einsame Insel mitnehmen?", "hint": "Wen würdest du lieber nie wieder sehen?" }
+    ],
+    "Orte": [
+      { "main": "In welchem Land würdest du gerne Urlaub machen?", "hint": "In welchem Land würdest du niemals Urlaub machen?" },
+      { "main": "Wo bist du zuletzt mit dem Zug hingefahren?", "hint": "Wo bist du zuletzt mit dem Auto hingefahren?" },
+      { "main": "Welches Restaurant besuchst du am liebsten?", "hint": "In welchem Café bist du am liebsten?" },
+      { "main": "Wo gehst du am liebsten spazieren?", "hint": "Wo gehst du am liebsten einkaufen?" },
+      { "main": "In welcher Stadt würdest du gerne leben?", "hint": "In welcher Stadt würdest du ungern leben?" }
+    ],
+    "Allgemein": [
+      { "main": "Was machst du als Erstes nach dem Aufstehen?", "hint": "Was machst du als Letztes vor dem Schlafengehen?" },
+      { "main": "Wie oft frühstückst du?", "hint": "Wie oft isst du Abendbrot?" },
+      { "main": "Welche Jahreszeit magst du am liebsten?", "hint": "Welche Jahreszeit magst du am wenigsten?" },
+      { "main": "Was ist dein Lieblingsgetränk?", "hint": "Was ist dein unbeliebtestes Getränk?" }
+    ]
+  }
 }

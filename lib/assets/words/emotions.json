@@ -1,0 +1,25 @@
+{
+  "category": "Gefühle",
+  "subcategories": {
+    "Positiv": [
+      { "main": "Freude", "related": ["Glück", "Spaß"], "hint": "Lächelnd" },
+      { "main": "Liebe", "related": ["Zuneigung", "Herz"], "hint": "Wärmend" },
+      { "main": "Stolz", "related": ["Erfolg", "Selbstbewusstsein"], "hint": "Erhobenen Hauptes" }
+    ],
+    "Negativ": [
+      { "main": "Angst", "related": ["Furcht", "Panik"], "hint": "Zitternd" },
+      { "main": "Wut", "related": ["Zorn", "Ärger"], "hint": "Rötend" },
+      { "main": "Trauer", "related": ["Kummer", "Wehmut"], "hint": "Tränend" }
+    ],
+    "Neutral": [
+      { "main": "Neugier", "related": ["Interesse", "Spannung"], "hint": "Fragend" },
+      { "main": "Ruhe", "related": ["Gelassenheit", "Stille"], "hint": "Entspannend" },
+      { "main": "Langeweile", "related": ["Monotonie", "Eintönigkeit"], "hint": "Gähnend" }
+    ],
+    "Sozial": [
+      { "main": "Eifersucht", "related": ["Neid", "Missgunst"], "hint": "Vergleichend" },
+      { "main": "Dankbarkeit", "related": ["Wertschätzung"], "hint": "Verbindend" },
+      { "main": "Scham", "related": ["Peinlichkeit", "Verlegenheit"], "hint": "Errötend" }
+    ]
+  }
+}

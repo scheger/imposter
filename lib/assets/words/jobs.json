@@ -1,0 +1,30 @@
+{
+  "category": "Berufe",
+  "subcategories": {
+    "Medizin und Pflege": [
+      { "main": "Arzt", "related": ["Chirurg", "Zahnarzt", "Hausarzt"], "hint": "Heilend" },
+      { "main": "Krankenschwester", "related": ["Pfleger", "Sanitäter"], "hint": "Helfend" },
+      { "main": "Tierarzt", "related": ["Veterinär", "Haustiere"], "hint": "Für Tiere" }
+    ],
+    "Handwerk": [
+      { "main": "Bäcker", "related": ["Konditor", "Koch"], "hint": "Duftend" },
+      { "main": "Schreiner", "related": ["Tischler", "Zimmermann"], "hint": "Holz" },
+      { "main": "Elektriker", "related": ["Installateur", "Techniker"], "hint": "Strom" }
+    ],
+    "Technik und Wissenschaft": [
+      { "main": "Ingenieur", "related": ["Architekt", "Techniker"], "hint": "Planend" },
+      { "main": "Programmierer", "related": ["Entwickler", "Coder"], "hint": "Logisch" },
+      { "main": "Forscher", "related": ["Wissenschaftler", "Laborant"], "hint": "Neugierig" }
+    ],
+    "Dienstleistung": [
+      { "main": "Lehrer", "related": ["Professor", "Dozent"], "hint": "Erklärend" },
+      { "main": "Kellner", "related": ["Servicekraft", "Barkeeper"], "hint": "Bedienend" },
+      { "main": "Polizist", "related": ["Kommissar", "Wachmann"], "hint": "Schützend" }
+    ],
+    "Kunst und Medien": [
+      { "main": "Schauspieler", "related": ["Regisseur", "Komiker"], "hint": "Darstellend" },
+      { "main": "Musiker", "related": ["Sänger", "Komponist"], "hint": "Klingend" },
+      { "main": "Maler", "related": ["Künstler", "Designer"], "hint": "Farbend" }
+    ]
+  }
+}
