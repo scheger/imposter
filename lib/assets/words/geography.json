@@ -16,10 +16,12 @@
       { "main": "Serbien", "related": ["Ungarn", "Rumänien", "Bulgarien", "Kroatien"], "hint": "Kyrillisch" },
       { "main": "Ukraine", "related": ["Polen", "Slowakei", "Russland", "Rumänien"], "hint": "Weizenanbau" },
       { "main": "Russland", "related": ["Ukraine", "Weißrussland", "Kasachstan", "Georgien"], "hint": "Brutalismus" },
+      { "main": "Finnland", "related": ["Schweden", "Estland", "Aaland", "Norwegen"], "hint": "Seen" },
+      { "main": "Norwegen", "related": ["Schweden", "Dänemark", "Färör", "Finnland"], "hint": "Königsgrabben" },
 
-      { "main": "USA", "related": ["Kanada", "Mexiko", "Großbritannien", "Australien"], "hint": "Nordamerika" },
-      { "main": "Kanada", "related": ["USA", "Großbritannien", "Australien", "Neuseeland"], "hint": "Nordamerika" },
-      { "main": "Mexiko", "related": ["USA", "Guatemala", "Costa Rica", "Kolumbien"], "hint": "Mittelamerika" },
+      { "main": "USA", "related": ["Kanada", "Mexiko", "Großbritannien", "Puerto Rico"], "hint": "Nationalparks" },
+      { "main": "Kanada", "related": ["USA", "Großbritannien", "Frankreich"], "hint": "Bilingual" },
+      { "main": "Mexiko", "related": ["USA", "Guatemala", "Costa Rica","Belize" ], "hint": "Kakteen" },
 
       { "main": "China", "related": ["Japan", "Südkorea", "Taiwan", "Vietnam"], "hint": "Ostasien" },
       { "main": "Japan", "related": ["Südkorea", "China", "Taiwan"], "hint": "Ostasien" },
