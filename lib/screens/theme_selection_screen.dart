@@ -15,7 +15,8 @@ class ThemeSelectionScreen extends StatefulWidget {
   State<ThemeSelectionScreen> createState() => _ThemeSelectionScreenState();
 }
 
-class _ThemeSelectionScreenState extends State<ThemeSelectionScreen> {
+class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
+    with SingleTickerProviderStateMixin {
   String? _expandedCategory;
   final Set<String> _selectedSubcategories = {};
   final Map<String, double> _dragOffsets = {};
@@ -25,7 +26,69 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen> {
   bool _dragMode = false;
   List<WordCategory> _dragList = []; // veränderbare Kopie für Reorder
 
-  // --- Interaktionen (nur aktiv, wenn !_dragMode) ---
+  // Animation für den Swipe-Hinweis
+  late AnimationController _hintController;
+  late Animation<double> _hintAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _hintController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 400),
+    );
+
+    _hintAnimation = Tween<double>(begin: 0.0, end: _maxDrag * 0.8).animate(
+      CurvedAnimation(parent: _hintController, curve: Curves.easeInOut),
+    );
+
+    _hintController.addListener(() {
+      final firstCategoryName = _getFirstCategoryName();
+      if (firstCategoryName != null) {
+        setState(() {
+          _dragOffsets[firstCategoryName] = _hintAnimation.value;
+        });
+      }
+    });
+
+    _hintController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _hintController.reverse();
+      }
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final gameService = context.read<GameProvider>().service;
+      if (!_dragMode && gameService.settings.showSwipeHint) {
+        _hintController.forward(from: 0.0);
+
+        // nach Abspielen für diese App-Sitzung deaktivieren
+        gameService.settings =
+            gameService.settings.copyWith(showSwipeHint: false);
+      }
+    });
+  }
+
+
+  @override
+  void dispose() {
+    _hintController.dispose();
+    super.dispose();
+  }
+
+  String? _getFirstCategoryName() {
+    final categoryService = Provider.of<CategoryService>(context, listen: false);
+    final categories = categoryService.getWordCategories(widget.mode);
+    return categories.isNotEmpty ? categories.first.name : null;
+  }
+
+  // --- Interaktionen ---
   void _toggleCategory(String categoryName) {
     if (_dragMode) return;
     setState(() {
@@ -49,20 +112,16 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen> {
   void _selectRandomFromAll(CategoryService service) {
     if (_dragMode) return;
 
-    // Alle Subkategorien sammeln
     final allSubcategories = <WordSubcategory>[];
     for (var cat in service.getWordCategories(widget.mode)) {
       allSubcategories.addAll(cat.subcategories);
     }
 
-    // Alle Items aus allen Subkategorien sammeln
     final allItems = allSubcategories.expand((s) => s.items).toList();
     if (allItems.isEmpty) return;
 
-    // Zufälliges Item auswählen
     final randomItem = (allItems..shuffle()).first;
 
-    // Kategorie-Namen bestimmen, nur wenn showCategoryOnRandom aktiviert
     String chosenCategory = "Zufall";
     final gameService = context.read<GameProvider>().service;
     if (gameService.settings.showCategoryOnRandom) {
@@ -108,7 +167,6 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen> {
 
     final randomItem = (selectedItems..shuffle()).first;
 
-    // Kategorie-Namen nur setzen, wenn showCategoryOnRandom aktiv
     String chosenCategory = "Auswahl";
     final gameService = context.read<GameProvider>().service;
     if (gameService.settings.showCategoryOnRandom) {
@@ -140,7 +198,7 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen> {
     return _selectedSubcategories.any((k) => k.startsWith("$categoryName::"));
   }
 
-  // Button-Ansicht wie vorher (für normalen Modus)
+  // Button-Ansicht für Kategorie
   Widget _buildCategoryButton(WordCategory category) {
     final bool isExpanded = _expandedCategory == category.name;
     final bool isSelected = isCategorySelected(category.name);
@@ -171,7 +229,8 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen> {
                   if (current >= _maxDrag * _toggleThresholdFraction) {
                     final keys = category.subcategories
                         .map((s) => "${category.name}::${s.name}");
-                    final allSelected = keys.every(_selectedSubcategories.contains);
+                    final allSelected =
+                        keys.every(_selectedSubcategories.contains);
                     setState(() {
                       if (allSelected) {
                         _selectedSubcategories.removeAll(keys);
@@ -281,23 +340,19 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen> {
     );
   }
 
-  // --- Wechsel Drag-Mode: lokale Kopie anlegen / löschen ---
   void _enterDragMode(List<WordCategory> serviceCategories) {
     _dragList = List<WordCategory>.from(serviceCategories);
     setState(() => _dragMode = true);
   }
 
   void _exitDragMode(CategoryService service, GameService gameService) {
-    // Speichere finale Reihenfolge
     service.updateOrder(widget.mode, _dragList, gameService);
-
     setState(() {
       _dragMode = false;
       _expandedCategory = null;
       _selectedSubcategories.clear();
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -306,7 +361,9 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.mode == Mode.words ? 'Wörter auswählen' : 'Fragen auswählen'),
+        title: Text(widget.mode == Mode.words
+            ? 'Wörter auswählen'
+            : 'Fragen auswählen'),
         actions: [
           IconButton(
             icon: Icon(_dragMode ? Icons.check : Icons.swap_vert),
@@ -331,20 +388,24 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen> {
                     ElevatedButton(
                       onPressed: () => _selectRandomFromAll(categoryService),
                       style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
                         minimumSize: const Size.fromHeight(50),
                         backgroundColor: Colors.orangeAccent,
                       ),
                       child: Text(
-                        widget.mode == Mode.words ? 'Zufall aus allen Themen' : 'Zufallsfrage aus allen Kategorien',
-                        style: const TextStyle(fontSize: 18, color: Colors.white),
+                        widget.mode == Mode.words
+                            ? 'Zufall aus allen Themen'
+                            : 'Zufallsfrage aus allen Kategorien',
+                        style:
+                            const TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),
                   const SizedBox(height: 16),
                   Expanded(
                     child: _dragMode
                         ? ReorderableListView(
-                            buildDefaultDragHandles: false, // wir verwenden eigene handles
+                            buildDefaultDragHandles: false,
                             children: [
                               for (int i = 0; i < _dragList.length; i++)
                                 ListTile(
@@ -373,15 +434,18 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen> {
                                 _dragList.insert(newIndex, item);
                               });
 
-                              final gameService = context.read<GameProvider>().service;
-                              categoryService.updateOrder(widget.mode, _dragList, gameService);
+                              final gameService =
+                                  context.read<GameProvider>().service;
+                              categoryService.updateOrder(
+                                  widget.mode, _dragList, gameService);
                             },
                           )
                         : ListView(
-                            children: serviceCategories.map(_buildCategoryButton).toList(),
+                            children: serviceCategories
+                                .map(_buildCategoryButton)
+                                .toList(),
                           ),
                   ),
-
                   if (!_dragMode) ...[
                     const SizedBox(height: 12),
                     ElevatedButton(
@@ -389,7 +453,8 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen> {
                           ? null
                           : () => _continue(categoryService),
                       style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
                         minimumSize: const Size.fromHeight(50),
                       ),
                       child: const Text('Weiter'),

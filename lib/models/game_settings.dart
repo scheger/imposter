@@ -6,9 +6,9 @@ class GameSettings {
   String crewWordQuestion;       // Was die Crew sieht
   String imposterWordQuestion;   // Was der Imposter sieht
   List<String> relatedWords;     // für 'similar'-Modus
-  int imposters;
+  int imposters;                 // Anzahl der Imposter
 
-  // NEU: Einstellungen
+  // Einstellungen
   bool showCategoryOnRandom;     // 1: Kategorie bei Zufall trotzdem anzeigen
   bool enableTimer;              // 2: Timer an/aus
   int timerSeconds;              // Zeit pro Spieler
@@ -20,6 +20,8 @@ class GameSettings {
 
   List<String> categoryOrderWords;      // Reihenfolge der Kategorien (für CategoryService)
   List<String> categoryOrderQuestions;  // Reihenfolge der Fragen-Kategorien
+
+  bool showSwipeHint;            // nur temporär, um den Hinweis zu zeigen
 
   GameSettings({
     this.category = '',
@@ -41,6 +43,8 @@ class GameSettings {
 
     this.categoryOrderWords = const [],
     this.categoryOrderQuestions = const [],
+
+    this.showSwipeHint = true,
   });
 
   GameSettings copyWith({
@@ -63,6 +67,8 @@ class GameSettings {
 
     List<String>? categoryOrderWords,
     List<String>? categoryOrderQuestions,
+
+    bool? showSwipeHint,
   }) {
     return GameSettings(
       category: category ?? this.category,
@@ -85,6 +91,8 @@ class GameSettings {
       // Reihenfolge der Kategorien
       categoryOrderWords: categoryOrderWords ?? this.categoryOrderWords,
       categoryOrderQuestions: categoryOrderQuestions ?? this.categoryOrderQuestions,
+
+      showSwipeHint: showSwipeHint ?? this.showSwipeHint,
     );
   }
 
