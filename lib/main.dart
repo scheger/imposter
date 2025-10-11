@@ -5,8 +5,10 @@ import 'services/game_service.dart';
 import 'screens/menu_screen.dart';
 import 'models/game_settings.dart';
 import 'services/category_service.dart';
+import 'services/ad_service.dart';
+import 'services/unlock_service.dart';
 
-// Globale Farben definieren
+// Farben
 const Color kLightBackground = Colors.white;
 const Color kDarkBackground = Colors.black;
 const MaterialColor kPrimarySwatch = Colors.blue;
@@ -20,7 +22,10 @@ void main() async {
   final categoryService = CategoryService(gameService.settings);
   await categoryService.init();
 
-  // edge-to-edge, System UI wird dynamisch im builder gesetzt
+  final adService = AdService();
+  final unlockService = UnlockService(gameService.settings);
+  await unlockService.loadUnlocked();
+
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
   runApp(
@@ -29,11 +34,14 @@ void main() async {
         ChangeNotifierProvider(create: (_) => GameProvider(gameService)),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => categoryService),
+        ChangeNotifierProvider(create: (_) => adService),
+        ChangeNotifierProvider(create: (_) => unlockService),
       ],
       child: const ImposterApp(),
     ),
   );
 }
+
 
 class ImposterApp extends StatelessWidget {
   const ImposterApp({super.key});
