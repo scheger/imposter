@@ -5,6 +5,8 @@ import '../main.dart';
 import 'player_setup_screen.dart';
 import '../models/words.dart';
 import '../services/game_service.dart';
+import '../services/unlock_service.dart';
+import '../services/ad_service.dart';
 
 class ThemeSelectionScreen extends StatefulWidget {
   final Mode mode; // Wörter oder Fragen
@@ -198,8 +200,132 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
     return _selectedSubcategories.any((k) => k.startsWith("$categoryName::"));
   }
 
+  void _showUnlockDialog(
+    WordCategory category,
+    UnlockService unlockService,
+    AdService adService,
+  ) {
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        bool isLoading = false;
+
+        Future<void> startAdFlow() async {
+          if (!mounted) return;
+          Navigator.pop(dialogContext);
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Anzeige wird geladen...')),
+          );
+
+          await adService.loadRewardAd(
+            onLoaded: () async {
+              if (!mounted) return;
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+              await adService.showRewardAd(
+                onUserEarnedReward: () async {
+                  await unlockService.unlockCategory(category.name);
+                  if (!mounted) return;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('${category.name} wurde freigeschaltet! 🎉'),
+                    ),
+                  );
+                },
+                onAdClosed: () {},
+              );
+            },
+            onFailed: () {
+              if (!mounted) return;
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('⚠️ Werbung konnte nicht geladen werden.'),
+                ),
+              );
+            },
+          );
+        }
+
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              title: Text('${category.name} ist gesperrt'),
+              content: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Diese Kategorie ist gesperrt. '
+                      'Möchtest du sie durch das Ansehen einer Werbung freischalten?\n',
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Inhalt dieser Kategorie:',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 6),
+                    // Unterkategorien und Wortanzahl auflisten
+                    ...category.subcategories.map((sub) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 2),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              sub.name,
+                              style: const TextStyle(fontSize: 14),
+                            ),
+                            Text(
+                              '${sub.items.length} Wörter',
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Abbrechen'),
+                ),
+                TextButton(
+                  onPressed: isLoading
+                      ? null
+                      : () async {
+                          setState(() => isLoading = true);
+                          await startAdFlow();
+                          if (mounted) setState(() => isLoading = false);
+                        },
+                  child: isLoading
+                      ? const SizedBox(
+                          height: 16,
+                          width: 16,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : const Text('Freischalten'),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+
   // Button-Ansicht für Kategorie
   Widget _buildCategoryButton(WordCategory category) {
+    final unlockService = Provider.of<UnlockService>(context, listen: false);
+    final adService = context.read<AdService>();
+    final bool unlocked = unlockService.isUnlocked(category.name);
+
     final bool isExpanded = _expandedCategory == category.name;
     final bool isSelected = isCategorySelected(category.name);
     final int selectedCount = _selectedSubcategories
@@ -207,141 +333,170 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
         .length;
     final double offset = _dragOffsets[category.name] ?? 0.0;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onHorizontalDragUpdate: _dragMode
-              ? null
-              : (details) {
-                  if (details.delta.dx <= 0) return;
-                  setState(() {
-                    _dragOffsets[category.name] =
-                        ((_dragOffsets[category.name] ?? 0) + details.delta.dx)
-                            .clamp(0.0, _maxDrag);
-                  });
-                },
-          onHorizontalDragEnd: _dragMode
-              ? null
-              : (details) {
-                  final current = _dragOffsets[category.name] ?? 0.0;
-                  if (current >= _maxDrag * _toggleThresholdFraction) {
-                    final keys = category.subcategories
-                        .map((s) => "${category.name}::${s.name}");
-                    final allSelected =
-                        keys.every(_selectedSubcategories.contains);
+    return Opacity(
+      opacity: unlocked ? 1.0 : 0.4, // halbtransparent, wenn gesperrt
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          GestureDetector(
+            onTap: _dragMode
+                ? null
+                : () {
+                    if (!unlocked) {
+                      _showUnlockDialog(category, unlockService, adService);
+                      return;
+                    }
+                    _toggleCategory(category.name);
+                  },
+            onHorizontalDragUpdate: _dragMode || !unlocked
+                ? null
+                : (details) {
+                    if (details.delta.dx <= 0) return;
                     setState(() {
-                      if (allSelected) {
-                        _selectedSubcategories.removeAll(keys);
-                      } else {
-                        _selectedSubcategories.addAll(keys);
-                      }
+                      _dragOffsets[category.name] =
+                          ((_dragOffsets[category.name] ?? 0) + details.delta.dx)
+                              .clamp(0.0, _maxDrag);
                     });
-                  }
-                  setState(() => _dragOffsets[category.name] = 0.0);
-                },
-          onTap: _dragMode ? null : () => _toggleCategory(category.name),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 180),
-            transform: Matrix4.translationValues(offset, 0, 0),
-            child: ElevatedButton(
-              onPressed:
-                  _dragMode ? null : () => _toggleCategory(category.name),
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)),
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                backgroundColor:
-                    (isSelected || isExpanded) ? Colors.blueAccent : null,
-              ),
-              child: Row(
-                children: [
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Text(
-                      category.name,
-                      style: TextStyle(
-                        fontSize: 18,
-                        color:
-                            (isSelected || isExpanded) ? Colors.white : null,
-                      ),
-                    ),
-                  ),
-                  if (!_dragMode && selectedCount > 0)
-                    Padding(
-                      padding: const EdgeInsets.only(right: 12),
-                      child: Text(
-                        "$selectedCount",
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.white70,
-                        ),
-                      ),
-                    ),
-                  Icon(
-                    _dragMode
-                        ? Icons.drag_handle
-                        : (isExpanded ? Icons.expand_less : Icons.expand_more),
-                    color: (isSelected || isExpanded) ? Colors.white : null,
-                  ),
-                  const SizedBox(width: 16),
-                ],
-              ),
-            ),
-          ),
-        ),
-        if (!_dragMode && isExpanded)
-          ...category.subcategories.map((sub) {
-            final key = "${category.name}::${sub.name}";
-            final bool selected = _selectedSubcategories.contains(key);
-
-            return Padding(
-              padding: const EdgeInsets.only(left: 24, top: 8),
+                  },
+            onHorizontalDragEnd: _dragMode || !unlocked
+                ? null
+                : (details) {
+                    final current = _dragOffsets[category.name] ?? 0.0;
+                    if (current >= _maxDrag * _toggleThresholdFraction) {
+                      final keys = category.subcategories
+                          .map((s) => "${category.name}::${s.name}");
+                      final allSelected =
+                          keys.every(_selectedSubcategories.contains);
+                      setState(() {
+                        if (allSelected) {
+                          _selectedSubcategories.removeAll(keys);
+                        } else {
+                          _selectedSubcategories.addAll(keys);
+                        }
+                      });
+                    }
+                    setState(() => _dragOffsets[category.name] = 0.0);
+                  },
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 180),
+              transform: Matrix4.translationValues(offset, 0, 0),
               child: ElevatedButton(
-                onPressed: () => _toggleSubcategory(category.name, sub.name),
+                onPressed: _dragMode
+                    ? null
+                    : () {
+                        if (!unlocked) {
+                          _showUnlockDialog(category, unlockService, adService);
+                          return;
+                        }
+                        _toggleCategory(category.name);
+                      },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30)),
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  backgroundColor: selected ? Colors.blueAccent : null,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  backgroundColor:
+                      (isSelected || isExpanded) ? Colors.blueAccent : null,
                 ),
-                child: Stack(
-                  alignment: Alignment.center,
+                child: Row(
                   children: [
-                    Center(
-                        child: Text(
-                      sub.name,
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: selected ? Colors.white : null,
-                      ),
-                    )),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: Text(
-                          '${sub.items.length}',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: selected ? Colors.white70 : Colors.grey[700],
-                          ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Text(
+                        category.name,
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: (isSelected || isExpanded)
+                              ? Colors.white
+                              : (unlocked ? null : Colors.grey[600]),
                         ),
                       ),
                     ),
+                    if (!unlocked)
+                      const Icon(Icons.lock, color: Colors.white70), // rechts
+                    if (unlocked && !_dragMode && selectedCount > 0)
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Text(
+                          "$selectedCount",
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.white70,
+                          ),
+                        ),
+                      ),
+                    Icon(
+                      _dragMode
+                          ? Icons.drag_handle
+                          : (isExpanded ? Icons.expand_less : Icons.expand_more),
+                      color: (isSelected || isExpanded)
+                          ? Colors.white
+                          : (unlocked ? null : Colors.grey[500]),
+                    ),
+                    const SizedBox(width: 16),
                   ],
                 ),
               ),
-            );
-          }),
-        const SizedBox(height: 12),
-      ],
+            ),
+          ),
+          if (!_dragMode && isExpanded && unlocked)
+            ...category.subcategories.map((sub) {
+              final key = "${category.name}::${sub.name}";
+              final selected = _selectedSubcategories.contains(key);
+
+              return Padding(
+                padding: const EdgeInsets.only(left: 24, top: 8),
+                child: ElevatedButton(
+                  onPressed: () => _toggleSubcategory(category.name, sub.name),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    backgroundColor: selected ? Colors.blueAccent : null,
+                  ),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Center(
+                        child: Text(
+                          sub.name,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: selected ? Colors.white : null,
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 12),
+                          child: Text(
+                            '${sub.items.length}',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: selected ? Colors.white70 : Colors.grey[700],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }),
+          const SizedBox(height: 12),
+        ],
+      ),
     );
   }
 
   void _enterDragMode(List<WordCategory> serviceCategories) {
-    _dragList = List<WordCategory>.from(serviceCategories);
+    final unlockService = context.read<UnlockService>();
+
+    // freigeschaltete zuerst, gesperrte danach
+    _dragList = [
+      ...serviceCategories.where((c) => unlockService.isUnlocked(c.name)),
+      ...serviceCategories.where((c) => !unlockService.isUnlocked(c.name)),
+    ];
     setState(() => _dragMode = true);
   }
 
@@ -357,13 +512,18 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
   @override
   Widget build(BuildContext context) {
     final categoryService = Provider.of<CategoryService>(context);
+    final unlockService = context.watch<UnlockService>(); // 🔹 watch für automatische UI-Aktualisierung
     final serviceCategories = categoryService.getWordCategories(widget.mode);
+
+    // Sortierte Kategorien: freigeschaltet zuerst
+    final sortedCategories = [
+      ...serviceCategories.where((c) => unlockService.isUnlocked(c.name)),
+      ...serviceCategories.where((c) => !unlockService.isUnlocked(c.name)),
+    ];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.mode == Mode.words
-            ? 'Wörter auswählen'
-            : 'Fragen auswählen'),
+        title: Text(widget.mode == Mode.words ? 'Wörter auswählen' : 'Fragen auswählen'),
         actions: [
           IconButton(
             icon: Icon(_dragMode ? Icons.check : Icons.swap_vert),
@@ -372,7 +532,7 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
               if (_dragMode) {
                 _exitDragMode(categoryService, gameService);
               } else {
-                _enterDragMode(serviceCategories);
+                _enterDragMode(sortedCategories); // 🔹 Drag-Liste ebenfalls sortiert
               }
             },
           ),
@@ -380,7 +540,7 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: serviceCategories.isEmpty
+        child: sortedCategories.isEmpty
             ? const Center(child: CircularProgressIndicator())
             : Column(
                 children: [
@@ -388,8 +548,7 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
                     ElevatedButton(
                       onPressed: () => _selectRandomFromAll(categoryService),
                       style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                         minimumSize: const Size.fromHeight(50),
                         backgroundColor: Colors.orangeAccent,
                       ),
@@ -397,8 +556,7 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
                         widget.mode == Mode.words
                             ? 'Zufall aus allen Themen'
                             : 'Zufallsfrage aus allen Kategorien',
-                        style:
-                            const TextStyle(fontSize: 18, color: Colors.white),
+                        style: const TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),
                   const SizedBox(height: 16),
@@ -418,43 +576,47 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
                                           style: const TextStyle(fontSize: 18),
                                         ),
                                       ),
-                                      const SizedBox(width: 8),
-                                      ReorderableDragStartListener(
-                                        index: i,
-                                        child: const Icon(Icons.drag_handle),
-                                      ),
+                                      if (unlockService.isUnlocked(_dragList[i].name))
+                                        ReorderableDragStartListener(
+                                          index: i,
+                                          child: const Icon(Icons.drag_handle),
+                                        ),
                                     ],
                                   ),
                                 )
                             ],
                             onReorder: (oldIndex, newIndex) {
+                              // Nur freigeschaltete Kategorien verschieben
+                              if (!_dragList[oldIndex].name.isNotEmpty &&
+                                  !unlockService.isUnlocked(_dragList[oldIndex].name)) {
+                                return;
+                              }
+
+                              // Gesperrte dürfen nicht vor die freigeschalteten kommen
+                              final lastUnlockedIndex =
+                                  _dragList.lastIndexWhere((c) => unlockService.isUnlocked(c.name));
+                              if (newIndex > lastUnlockedIndex + 1) newIndex = lastUnlockedIndex + 1;
+
                               setState(() {
                                 if (newIndex > oldIndex) newIndex -= 1;
                                 final item = _dragList.removeAt(oldIndex);
                                 _dragList.insert(newIndex, item);
                               });
 
-                              final gameService =
-                                  context.read<GameProvider>().service;
-                              categoryService.updateOrder(
-                                  widget.mode, _dragList, gameService);
+                              final gameService = context.read<GameProvider>().service;
+                              categoryService.updateOrder(widget.mode, _dragList, gameService);
                             },
                           )
                         : ListView(
-                            children: serviceCategories
-                                .map(_buildCategoryButton)
-                                .toList(),
+                            children: sortedCategories.map(_buildCategoryButton).toList(),
                           ),
                   ),
                   if (!_dragMode) ...[
                     const SizedBox(height: 12),
                     ElevatedButton(
-                      onPressed: _selectedSubcategories.isEmpty
-                          ? null
-                          : () => _continue(categoryService),
+                      onPressed: _selectedSubcategories.isEmpty ? null : () => _continue(categoryService),
                       style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                         minimumSize: const Size.fromHeight(50),
                       ),
                       child: const Text('Weiter'),
