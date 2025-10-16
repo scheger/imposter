@@ -1,0 +1,42 @@
+{
+  "category": "Essen",
+  "subcategories": {
+    "Gerichte": [
+      { "crew": ["Pizza"], "imposter": ["Pasta", "Lasagne", "Calzone"] },
+      { "crew": ["Sushi"], "imposter": ["Sashimi", "Maki", "Tempura"] },
+      { "crew": ["Burger"], "imposter": ["Pommes", "Hotdog", "Sandwich"] },
+      { "crew": ["Curry"], "imposter": ["Naan", "Reis", "Tandoori"] },
+      { "crew": ["Tacos"], "imposter": ["Burrito", "Quesadilla", "Guacamole"] },
+      { "crew": ["Paella"], "imposter": ["Tapas", "Gazpacho", "Chorizo"] },
+      { "crew": ["Falafel"], "imposter": ["Hummus", "Pita", "Tabbouleh"] },
+      { "crew": ["Bratwurst"], "imposter": ["Sauerkraut", "Pretzel", "Kartoffelsalat"] },
+      { "crew": ["Dim Sum"], "imposter": ["Dumplings", "Baozi", "Chop Suey"] },
+      { "crew": ["Kimchi"], "imposter": ["Bibimbap", "Bulgogi", "Tteokbokki"] },
+      { "crew": ["Gulasch"], "imposter": ["Knödel", "Paprika", "Sauce"] },
+      { "crew": ["Pierogi"], "imposter": ["Borschtsch", "Kielbasa"] },
+      { "crew": ["Crepes"], "imposter": ["Nutella", "Zucker", "Obst"] },
+      { "crew": ["Moussaka"], "imposter": ["Tzatziki", "Gyros", "Oliven"] },
+      { "crew": ["Pad Thai"], "imposter": ["Frühlingsrollen", "Satay", "Kokosmilch"] },
+      { "crew": ["Ceviche"], "imposter": ["Empanada", "Arepa"] },
+      { "crew": ["Fondue"], "imposter": ["Raclette", "Brot", "Käse"] },
+      { "crew": ["Bruschetta"], "imposter": ["Olivenöl", "Tomaten", "Basilikum"] },
+      { "crew": ["Chili con Carne"], "imposter": ["Tortilla", "Mais"] }
+    ],
+    "Obst und Gemüse": [
+      { "crew": ["Apfel"], "imposter": ["Birne", "Quitte"] },
+      { "crew": ["Banane"], "imposter": ["Mango", "Papaya"] },
+      { "crew": ["Tomate"], "imposter": ["Gurke", "Paprika"] },
+      { "crew": ["Karotte"], "imposter": ["Pastinake", "Rote Beete"] },
+      { "crew": ["Kartoffel"], "imposter": ["Süßkartoffel", "Yams"] },
+      { "crew": ["Zwiebel"], "imposter": ["Knoblauch", "Lauch"] },
+      { "crew": ["Kürbis"], "imposter": ["Zucchini", "Melone"] },
+      { "crew": ["Erdbeere"], "imposter": ["Himbeere", "Brombeere"] },
+      { "crew": ["Zucchini"], "imposter": ["Gurke", "Kürbis"] },
+      { "crew": ["Spinat"], "imposter": ["Mangold", "Grünkohl"] },
+      { "crew": ["Brokkoli"], "imposter": ["Blumenkohl", "Rosenkohl"] },
+      { "crew": ["Avocado"], "imposter": ["Olive", "Kokosnuss"] },
+      { "crew": ["Paprika"], "imposter": ["Chili", "Tomate"] },
+      { "crew": ["Gurke"], "imposter": ["Zucchini", "Melone"] }
+    ]
+  }
+}

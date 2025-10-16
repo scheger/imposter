@@ -1,21 +1,21 @@
 {
-    "category": "Everyday2",
-    "subcategories": {
-        "Zahlenfragen": [
-            { "main": "Wie viele Stunden schläfst du normalerweise?", "hint": "Wie viele Stunden würdest du gerne schlafen können?" },
-            { "main": "Wie viele Tassen Kaffee trinkst du pro Tag?", "hint": "Wie viele Tassen könntest du trinken, ohne müde zu werden?" },
-            { "main": "Wie viele Bücher liest du im Monat?", "hint": "Wie viele Bücher würdest du lesen, wenn du Zeit hättest?" },
-            { "main": "Wie viele Apps hast du auf deinem Handy?", "hint": "Wie viele Apps würdest du gerne auf deinem Handy haben?" }
-        ],
-        "Personenfragen": [
-            { "main": "Wer ist dein bester Freund?", "hint": "Wer wäre dein Traumpartner für ein Abenteuer?" },
-            { "main": "Welche Person inspiriert dich am meisten?", "hint": "Welche Person würdest du gerne einmal sein?" },
-            { "main": "Wer hat dich zuletzt zum Lachen gebracht?", "hint": "Wer würdest du gerne einmal zum Lachen bringen?" }
-        ],
-        "Orte": [
-            { "main": "Welcher Ort in deiner Stadt gefällt dir am besten?", "hint": "An welchem Ort würdest du gerne leben?" },
-            { "main": "Wo verbringst du am liebsten deinen Urlaub?", "hint": "Wo würdest du am liebsten eine Woche verbringen?" },
-            { "main": "Welchen Ort möchtest du unbedingt einmal besuchen?", "hint": "Welchen Ort würdest du gerne nie wieder verlassen?" }
-        ]
-    }
+  "category": "Everyday2",
+  "subcategories": {
+    "Zahlenfragen": [
+      { "crew": ["Wie viele Stunden schläfst du normalerweise?"], "imposter": ["Wie viele Stunden würdest du gerne schlafen können?"] },
+      { "crew": ["Wie viele Tassen Kaffee trinkst du pro Tag?"], "imposter": ["Wie viele Tassen könntest du trinken, ohne müde zu werden?"] },
+      { "crew": ["Wie viele Bücher liest du im Monat?"], "imposter": ["Wie viele Bücher würdest du lesen, wenn du Zeit hättest?"] },
+      { "crew": ["Wie viele Apps hast du auf deinem Handy?"], "imposter": ["Wie viele Apps würdest du gerne auf deinem Handy haben?"] }
+    ],
+    "Personenfragen": [
+      { "crew": ["Wer ist dein bester Freund?"], "imposter": ["Wer wäre dein Traumpartner für ein Abenteuer?"] },
+      { "crew": ["Welche Person inspiriert dich am meisten?"], "imposter": ["Welche Person würdest du gerne einmal sein?"] },
+      { "crew": ["Wer hat dich zuletzt zum Lachen gebracht?"], "imposter": ["Wer würdest du gerne einmal zum Lachen bringen?"] }
+    ],
+    "Orte": [
+      { "crew": ["Welcher Ort in deiner Stadt gefällt dir am besten?"], "imposter": ["An welchem Ort würdest du gerne leben?"] },
+      { "crew": ["Wo verbringst du am liebsten deinen Urlaub?"], "imposter": ["Wo würdest du am liebsten eine Woche verbringen?"] },
+      { "crew": ["Welchen Ort möchtest du unbedingt einmal besuchen?"], "imposter": ["Welchen Ort würdest du gerne nie wieder verlassen?"] }
+    ]
+  }
 }

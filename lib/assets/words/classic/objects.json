@@ -1,0 +1,24 @@
+{
+  "category": "Objekte",
+  "subcategories": {
+    "Alltagsgegenstände": [
+      { "crew": ["Stuhl"], "imposter": ["Sitzend"] },
+      { "crew": ["Tisch"], "imposter": ["Flach"] },
+      { "crew": ["Lampe"], "imposter": ["Leuchtend"] },
+      { "crew": ["Tasse"], "imposter": ["Trinkend"] },
+      { "crew": ["Löffel"], "imposter": ["Essend"] },
+      { "crew": ["Pfanne"], "imposter": ["Bratend"] },
+      { "crew": ["Buch"], "imposter": ["Lesend"] },
+      { "crew": ["Stift"], "imposter": ["Schreibend"] },
+      { "crew": ["Lineal"], "imposter": ["Messend"] },
+      { "crew": ["Schlüssel"], "imposter": ["Öffnend"] },
+      { "crew": ["Uhr"], "imposter": ["Tickend"] },
+      { "crew": ["Brille"], "imposter": ["Sehend"] }
+    ],
+    "Technik": [
+      { "crew": ["Handy"], "imposter": ["Klingelnd"] },
+      { "crew": ["Laptop"], "imposter": ["Arbeitend"] },
+      { "crew": ["Fernseher"], "imposter": ["Schaubar"] }
+    ]
+  }
+}

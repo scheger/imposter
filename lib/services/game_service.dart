@@ -24,7 +24,7 @@ class GameService {
   }
 
   // 🔹 Settings updaten + speichern
-  void updateSettings(GameSettings newSettings) async {
+  Future<void> updateSettings(GameSettings newSettings) async {
     settings = newSettings;
     await saveSettings();
   }
@@ -53,34 +53,46 @@ class GameService {
     startPlayerIndex = Random().nextInt(players.length);
   }
 
-  /// Muss NACH dem Setzen von `crewWordQuestion`/`imposterWordQuestion`/`relatedWords`
-  /// aus der ThemeSelection aufgerufen werden (z.B. im PlayerSetupScreen beim Start).
+  /// Muss NACH dem Setzen von `crewContent` / `imposterContent`
+  /// in der Theme-Auswahl aufgerufen werden (z.B. im PlayerSetupScreen beim Start).
+  /// 
+  /// Aufgabe: kleine, sichere Fallback-Logik je Modus (falls etwas nicht gesetzt wurde).
   void prepareWordsForMode() {
     switch (settings.mode) {
       case 'classic':
-        // crewWordQuestion/imposterWordQuestion wurden in der Auswahl gesetzt.
-        // Nichts weiter zu tun.
+        // classic erwartet, dass crewContent und imposterContent bereits gesetzt sind.
+        // Keine zusätzliche Logik erforderlich.
         break;
 
       case 'similar':
-        // Crew behält das Wort, Imposter bekommen ALLE dasselbe zufällige related-Wort.
-        String chosen = settings.imposterWordQuestion; // Fallback falls schon gesetzt
-        if (settings.relatedWords.isNotEmpty) {
-          chosen = settings.relatedWords[Random().nextInt(settings.relatedWords.length)];
+        // Bei 'similar' sollte imposterContent ein alternatives/ähnliches Wort enthalten.
+        // Falls es leer ist (z. B. weil ThemeSelection das nicht gesetzt hat),
+        // setzen wir einen sicheren Fallback (crewContent), damit das Spiel nicht mit
+        // einem leeren Imposter-Text startet.
+        if ((settings.imposterContent).trim().isEmpty) {
+          settings = settings.copyWith(
+            imposterContent: settings.crewContent,
+          );
         }
-        settings = settings.copyWith(
-          // crewWordQuestion bleibt wie gewählt
-          imposterWordQuestion: chosen,
-        );
         break;
 
       case 'undercover':
-        // Fragen wurden bereits in der Auswahl gesetzt (crew/imposter Frage).
-        // Nichts weiter zu tun.
+        // undercover kann so gestaltet sein, dass crewContent und imposterContent
+        // bereits korrekt gesetzt sind (z.B. unterschiedliche Fragen).
+        // Falls imposterContent leer ist, belassen wir es leer — das bedeutet:
+        // Imposter sieht ggf. dieselbe Frage (je nach Spiel-UI).
+        // Falls du möchtest, dass Imposter immer etwas anderes sieht, 
+        // setze hier einen Fallback analog zu 'similar'.
         break;
 
       default:
-        // Fallback wie classic – nichts zusätzlich.
+        // Unbekannter Modus -> minimaler Fallback: ensure crewContent ist nicht null.
+        if ((settings.crewContent).trim().isEmpty) {
+          settings = settings.copyWith(crewContent: '');
+        }
+        if ((settings.imposterContent).trim().isEmpty) {
+          settings = settings.copyWith(imposterContent: '');
+        }
         break;
     }
   }

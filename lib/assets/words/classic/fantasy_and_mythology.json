@@ -1,0 +1,53 @@
+{
+  "category": "Fantasy und Mythologie",
+  "subcategories": {
+    "Götter": [
+      { "crew": ["Zeus"], "imposter": ["Herrscher des Himmels"] },
+      { "crew": ["Odin"], "imposter": ["Ein Auge"] },
+      { "crew": ["Thor"], "imposter": ["Blitzbringer"] },
+      { "crew": ["Athene"], "imposter": ["Strategin"] },
+      { "crew": ["Hades"], "imposter": ["Totenreich"] },
+      { "crew": ["Loki"], "imposter": ["Schalksnatur"] },
+      { "crew": ["Ra"], "imposter": ["Gott des Lichts"] },
+      { "crew": ["Anubis"], "imposter": ["Wächter der Toten"] },
+      { "crew": ["Poseidon"], "imposter": ["Sturm über Wasser"] },
+      { "crew": ["Hera"], "imposter": ["Königin des Olymps"] }
+    ],
+    "Kreaturen": [
+      { "crew": ["Drache"], "imposter": ["Hort der Schätze"] },
+      { "crew": ["Einhor"], "imposter": ["Reinheit"] },
+      { "crew": ["Zentaur"], "imposter": ["Halb Mensch"] },
+      { "crew": ["Greif"], "imposter": ["Wächter der Schätze"] },
+      { "crew": ["Phönix"], "imposter": ["Lebendig aus Asche"] },
+      { "crew": ["Hydra"], "imposter": ["Mehrköpfiges Monster"] },
+      { "crew": ["Minotaurus"], "imposter": ["Gefangen im Irrgarten"] },
+      { "crew": ["Sphinx"], "imposter": ["Frage mich"] },
+      { "crew": ["Banshee"], "imposter": ["Prophezeit Unglück"] },
+      { "crew": ["Sirene"], "imposter": ["Verführerisch"] }
+    ],
+    "Artefakte": [
+      { "crew": ["Excalibur"], "imposter": ["Königlicher Stahl"] },
+      { "crew": ["Heiliger Gral"], "imposter": ["Unsterblichkeit"] },
+      { "crew": ["Mjölnir"], "imposter": ["Donner"] },
+      { "crew": ["Ring der Macht"], "imposter": ["Unsichtbar"] },
+      { "crew": ["Golden Fleece"], "imposter": ["Schatz der Schafe"] },
+      { "crew": ["Pandoras Box"], "imposter": ["Neugier"] },
+      { "crew": ["Triforce"], "imposter": ["Dreieinigkeit"] },
+      { "crew": ["Stormbreaker"], "imposter": ["Donnerwaffe"] },
+      { "crew": ["Amulett von Samarkand"], "imposter": ["Schutzzauber"] },
+      { "crew": ["Necronomicon"], "imposter": ["Dunkle Beschwörungen"] }
+    ],
+    "Orte & Reiche": [
+      { "crew": ["Asgard"], "imposter": ["Thors Heimat"] },
+      { "crew": ["Mittelerde"], "imposter": ["Episches Land"] },
+      { "crew": ["Avalon"], "imposter": ["Mythische Insel"] },
+      { "crew": ["Atlantis"], "imposter": ["Versunken"] },
+      { "crew": ["Narnia"], "imposter": ["Magisches Land"] },
+      { "crew": ["Olymp"], "imposter": ["Höchster Berg"] },
+      { "crew": ["Hogwarts"], "imposter": ["Magische Akademie"] },
+      { "crew": ["Mordor"], "imposter": ["Düsteres Land"] },
+      { "crew": ["Camelot"], "imposter": ["Runder Tisch"] },
+      { "crew": ["Underland"], "imposter": ["Tief unten"] }
+    ]
+  }
+}

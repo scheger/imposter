@@ -1,0 +1,42 @@
+{
+  "category": "Essen",
+  "subcategories": {
+    "Gerichte": [
+      { "crew": ["Pizza"], "imposter": ["Italien"] },
+      { "crew": ["Sushi"], "imposter": ["Japan"] },
+      { "crew": ["Burger"], "imposter": ["Fastfood"] },
+      { "crew": ["Curry"], "imposter": ["Indien"] },
+      { "crew": ["Tacos"], "imposter": ["Mexiko"] },
+      { "crew": ["Paella"], "imposter": ["Spanien"] },
+      { "crew": ["Falafel"], "imposter": ["Nahost"] },
+      { "crew": ["Bratwurst"], "imposter": ["Deutschland"] },
+      { "crew": ["Dim Sum"], "imposter": ["China"] },
+      { "crew": ["Kimchi"], "imposter": ["Korea"] },
+      { "crew": ["Gulasch"], "imposter": ["Ungarn"] },
+      { "crew": ["Pierogi"], "imposter": ["Osteuropa"] },
+      { "crew": ["Crepes"], "imposter": ["Süß"] },
+      { "crew": ["Moussaka"], "imposter": ["Griechenland"] },
+      { "crew": ["Pad Thai"], "imposter": ["Thailand"] },
+      { "crew": ["Ceviche"], "imposter": ["Südamerika"] },
+      { "crew": ["Fondue"], "imposter": ["Schweiz"] },
+      { "crew": ["Bruschetta"], "imposter": ["Italien"] },
+      { "crew": ["Chili con Carne"], "imposter": ["USA/Mexiko"] }
+    ],
+    "Obst und Gemüse": [
+      { "crew": ["Apfel"], "imposter": ["Frucht"] },
+      { "crew": ["Banane"], "imposter": ["Tropisch"] },
+      { "crew": ["Tomate"], "imposter": ["Gemüse/Frucht"] },
+      { "crew": ["Karotte"], "imposter": ["Wurzel"] },
+      { "crew": ["Kartoffel"], "imposter": ["Knolle"] },
+      { "crew": ["Zwiebel"], "imposter": ["Gewürz"] },
+      { "crew": ["Kürbis"], "imposter": ["Fruchtgemüse"] },
+      { "crew": ["Erdbeere"], "imposter": ["Beere"] },
+      { "crew": ["Zucchini"], "imposter": ["Fruchtgemüse"] },
+      { "crew": ["Spinat"], "imposter": ["Blattgemüse"] },
+      { "crew": ["Brokkoli"], "imposter": ["Kreuzblütler"] },
+      { "crew": ["Avocado"], "imposter": ["Fettfrucht"] },
+      { "crew": ["Paprika"], "imposter": ["Scharf"] },
+      { "crew": ["Gurke"], "imposter": ["Wassermelone verwandt"] }
+    ]
+  }
+}

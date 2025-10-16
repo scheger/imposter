@@ -1,0 +1,31 @@
+{
+  "category": "Berufe",
+  "subcategories": {
+    "Medizin und Pflege": [
+      { "crew": ["Arzt"], "imposter": ["Heilend"] },
+      { "crew": ["Krankenschwester"], "imposter": ["Helfend"] },
+      { "crew": ["Tierarzt"], "imposter": ["Für Tiere"] }
+    ],
+    "Handwerk": [
+      { "crew": ["Bäcker"], "imposter": ["Duftend"] },
+      { "crew": ["Schreiner"], "imposter": ["Holz"] },
+      { "crew": ["Elektriker"], "imposter": ["Strom"] }
+    ],
+    "Technik und Wissenschaft": [
+      { "crew": ["Ingenieur"], "imposter": ["Planend"] },
+      { "crew": ["Programmierer"], "imposter": ["Logisch"] },
+      { "crew": ["Forscher"], "imposter": ["Neugierig"] }
+    ],
+    "Dienstleistung": [
+      { "crew": ["Lehrer"], "imposter": ["Erklärend"] },
+      { "crew": ["Kellner"], "imposter": ["Bedienend"] },
+      { "crew": ["Polizist"], "imposter": ["Schützend"] }
+    ],
+    "Kunst und Medien": [
+      { "crew": ["Schauspieler"], "imposter": ["Darstellend"] },
+      { "crew": ["Musiker"], "imposter": ["Klingend"] },
+      { "crew": ["Maler"], "imposter": ["Farbend"] }
+    ]
+  }
+}
+

@@ -3,9 +3,8 @@ import 'dart:convert';
 class GameSettings {
   String category;
   String mode; // 'classic' | 'similar' | 'undercover' | ...
-  String crewWordQuestion;       // Was die Crew sieht
-  String imposterWordQuestion;   // Was der Imposter sieht
-  List<String> relatedWords;     // für 'similar'-Modus
+  String crewContent;      // Was die Crew sieht
+  String imposterContent;  // Was die Imposter sehen
   int imposters;                 // Anzahl der Imposter
 
   // Einstellungen
@@ -18,17 +17,17 @@ class GameSettings {
   bool soundOn;                  // 4: Sound ein/aus
   String themeMode;              // 5: "system" | "dark" | "light"
 
-  List<String> categoryOrderWords;      // Reihenfolge der Kategorien (für CategoryService)
-  List<String> categoryOrderQuestions;  // Reihenfolge der Fragen-Kategorien
+  List<String> categoryOrderClassic;      // Reihenfolge der Kategorien (für CategoryService)
+  List<String> categoryOrderSimilar;
+  List<String> categoryOrderUndercover;  // Reihenfolge der Fragen-Kategorien
 
   bool showSwipeHint;            // nur temporär, um den Hinweis zu zeigen
 
   GameSettings({
     this.category = '',
     this.mode = 'classic',
-    this.crewWordQuestion = '',
-    this.imposterWordQuestion = '',
-    this.relatedWords = const [],
+    this.crewContent = '',
+    this.imposterContent = '',
     this.imposters = 1,
 
     // Default-Werte
@@ -41,8 +40,9 @@ class GameSettings {
     this.soundOn = true,
     this.themeMode = 'system',
 
-    this.categoryOrderWords = const [],
-    this.categoryOrderQuestions = const [],
+    this.categoryOrderClassic = const [],
+    this.categoryOrderSimilar = const [],
+    this.categoryOrderUndercover = const [],
 
     this.showSwipeHint = true,
   });
@@ -50,12 +50,10 @@ class GameSettings {
   GameSettings copyWith({
     String? category,
     String? mode,
-    String? crewWordQuestion,
-    String? imposterWordQuestion,
-    List<String>? relatedWords,
+    String? crewContent,
+    String? imposterContent,
     int? imposters,
 
-    // neue Felder
     bool? showCategoryOnRandom,
     bool? enableTimer,
     int? timerSeconds,
@@ -65,20 +63,19 @@ class GameSettings {
     bool? soundOn,
     String? themeMode,
 
-    List<String>? categoryOrderWords,
-    List<String>? categoryOrderQuestions,
+    List<String>? categoryOrderClassic,
+    List<String>? categoryOrderSimilar,
+    List<String>? categoryOrderUndercover,
 
     bool? showSwipeHint,
   }) {
     return GameSettings(
       category: category ?? this.category,
       mode: mode ?? this.mode,
-      crewWordQuestion: crewWordQuestion ?? this.crewWordQuestion,
-      imposterWordQuestion: imposterWordQuestion ?? this.imposterWordQuestion,
-      relatedWords: relatedWords ?? this.relatedWords,
+      crewContent: crewContent ?? this.crewContent,
+      imposterContent: imposterContent ?? this.imposterContent,
       imposters: imposters ?? this.imposters,
 
-      // Einstellungen
       showCategoryOnRandom: showCategoryOnRandom ?? this.showCategoryOnRandom,
       enableTimer: enableTimer ?? this.enableTimer,
       timerSeconds: timerSeconds ?? this.timerSeconds,
@@ -88,22 +85,21 @@ class GameSettings {
       soundOn: soundOn ?? this.soundOn,
       themeMode: themeMode ?? this.themeMode,
 
-      // Reihenfolge der Kategorien
-      categoryOrderWords: categoryOrderWords ?? this.categoryOrderWords,
-      categoryOrderQuestions: categoryOrderQuestions ?? this.categoryOrderQuestions,
+      categoryOrderClassic: categoryOrderClassic ?? this.categoryOrderClassic,
+      categoryOrderSimilar: categoryOrderSimilar ?? this.categoryOrderSimilar,
+      categoryOrderUndercover:
+          categoryOrderUndercover ?? this.categoryOrderUndercover,
 
       showSwipeHint: showSwipeHint ?? this.showSwipeHint,
     );
   }
 
-  /// Praktisch, um beim Rundenwechsel die Wort-/Fragen-Daten zu leeren
+  /// Leert die Spielinhalte für eine neue Runde
   void clearRoundData() {
-    crewWordQuestion = '';
-    imposterWordQuestion = '';
-    relatedWords = [];
+    crewContent = '';
+    imposterContent = '';
   }
 
-  // 🔹 Neu: JSON-Export
   Map<String, dynamic> toJson() {
     return {
       'showCategoryOnRandom': showCategoryOnRandom,
@@ -114,8 +110,9 @@ class GameSettings {
       'imposterHintsMode': imposterHintsMode,
       'soundOn': soundOn,
       'themeMode': themeMode,
-      'categoryOrderWords': categoryOrderWords,
-      'categoryOrderQuestions': categoryOrderQuestions,
+      'categoryOrderClassic': categoryOrderClassic,
+      'categoryOrderSimilar': categoryOrderSimilar,
+      'categoryOrderUndercover': categoryOrderUndercover,
     };
   }
 
@@ -129,8 +126,12 @@ class GameSettings {
       imposterHintsMode: json['imposterHintsMode'] ?? 'firstOnly',
       soundOn: json['soundOn'] ?? true,
       themeMode: json['themeMode'] ?? 'system',
-      categoryOrderWords: List<String>.from(json['categoryOrderWords'] ?? []),
-      categoryOrderQuestions: List<String>.from(json['categoryOrderQuestions'] ?? []),
+      categoryOrderClassic:
+          List<String>.from(json['categoryOrderClassic'] ?? []),
+      categoryOrderSimilar:
+          List<String>.from(json['categoryOrderSimilar'] ?? []),
+      categoryOrderUndercover:
+          List<String>.from(json['categoryOrderUndercover'] ?? []),
     );
   }
 

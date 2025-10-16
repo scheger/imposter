@@ -1,0 +1,70 @@
+{
+  "category": "Mode und Marken",
+  "subcategories": {
+    "Luxusmarken": [
+      { "crew": ["Gucci"], "imposter": ["Doppelte G"] },
+      { "crew": ["Louis Vuitton"], "imposter": ["Französisches Emblem"] },
+      { "crew": ["Chanel"], "imposter": ["Camellia"] },
+      { "crew": ["Prada"], "imposter": ["Italienische Eleganz"] },
+      { "crew": ["Dior"], "imposter": ["Monsieur Christian"] },
+      { "crew": ["Versace"], "imposter": ["Italienischer Extravaganz"] },
+      { "crew": ["Hermès"], "imposter": ["Französische Reittradition"] },
+      { "crew": ["Balenciaga"], "imposter": ["Spanische Herkunft"] },
+      { "crew": ["Givenchy"], "imposter": ["Audrey Hepburns Favorit"] },
+      { "crew": ["Valentino"], "imposter": ["Italienischer Klassiker"] }
+    ],
+    "Streetwear": [
+      { "crew": ["Supreme"], "imposter": ["Rot-weißes Label"] },
+      { "crew": ["Off-White"], "imposter": ["Virgil Abloh"] },
+      { "crew": ["Palace"], "imposter": ["Tri-Ferg"] },
+      { "crew": ["Stüssy"], "imposter": ["Ursprung Kalifornien"] },
+      { "crew": ["A Bathing Ape"], "imposter": ["Japanischer Affe"] },
+      { "crew": ["Fear of God"], "imposter": ["Religiöse Anklänge"] },
+      { "crew": ["Nike SB"], "imposter": ["Swoosh"] },
+      { "crew": ["Adidas Originals"], "imposter": ["Drei Streifen"] },
+      { "crew": ["Kith"], "imposter": ["Ronnie Fieg"] },
+      { "crew": ["Carhartt WIP"], "imposter": ["Abgeleitet vom Arbeitsanzug"] }
+    ],
+    "Schuhe": [
+      { "crew": ["Air Jordan 1"], "imposter": ["Michael"] },
+      { "crew": ["Converse Chuck Taylor"], "imposter": ["Ikonische Silhouette"] },
+      { "crew": ["Adidas Yeezy"], "imposter": ["Futuristisch"] },
+      { "crew": ["Nike Air Max"], "imposter": ["Visible Air"] },
+      { "crew": ["Dr. Martens"], "imposter": ["Englischer Klassiker"] },
+      { "crew": ["Balenciaga Triple S"], "imposter": ["Riesen-Sohle"] },
+      { "crew": ["Vans Old Skool"], "imposter": ["Kalifornische Tradition"] },
+      { "crew": ["Reebok Classic"], "imposter": ["90er Sneaker"] },
+      { "crew": ["New Balance 550"], "imposter": ["Boston"] },
+      { "crew": ["Gucci Ace"], "imposter": ["Luxus mit Streifen"] }
+    ],
+    "Fahrzeugmarken": [
+      { "crew": ["Ferrari"], "imposter": ["Cavallino Rampante"] },
+      { "crew": ["Lamborghini"], "imposter": ["Stierkampf"] },
+      { "crew": ["Porsche"], "imposter": ["Zuffenhausen"] },
+      { "crew": ["Mercedes-Benz"], "imposter": ["Three-Pointed Star"] },
+      { "crew": ["BMW"], "imposter": ["Blaue und weiße Scheibe"] },
+      { "crew": ["Audi"], "imposter": ["Vorsprung durch Technik"] },
+      { "crew": ["Volkswagen"], "imposter": ["People's Car"] },
+      { "crew": ["Tesla"], "imposter": ["Ladestation"] },
+      { "crew": ["Jaguar"], "imposter": ["Springendes Tier"] },
+      { "crew": ["Land Rover"], "imposter": ["Offroad-Klassiker"] },
+      { "crew": ["Ford"], "imposter": ["Henry"] },
+      { "crew": ["Chevrolet"], "imposter": ["Bowtie Logo"] },
+      { "crew": ["Honda"], "imposter": ["Motorräder und Autos"] },
+      { "crew": ["Toyota"], "imposter": ["Hybrid Pionier"] },
+      { "crew": ["Maserati"], "imposter": ["Edler Dreizack"] }
+    ],
+    "Accessoires": [
+      { "crew": ["Ray-Ban Wayfarer"], "imposter": ["Berühmte Form"] },
+      { "crew": ["Hermès Birkin"], "imposter": ["Sehr teuer"] },
+      { "crew": ["Cartier Love Bracelet"], "imposter": ["Schrauben"] },
+      { "crew": ["Rolex Submariner"], "imposter": ["Grünes Zifferblatt möglich"] },
+      { "crew": ["Chanel 2.55"], "imposter": ["Steppung"] },
+      { "crew": ["Gucci Belt"], "imposter": ["Doppelte Buchstaben"] },
+      { "crew": ["Louis Vuitton Neverfull"], "imposter": ["Sehr geräumig"] },
+      { "crew": ["Prada Nylon Bag"], "imposter": ["1980er Material"] },
+      { "crew": ["Burberry Schal"], "imposter": ["Iconic Check"] },
+      { "crew": ["Oakley Holbrook"], "imposter": ["US-Brand"] }
+    ]
+  }
+}

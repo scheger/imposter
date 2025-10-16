@@ -1,0 +1,24 @@
+{
+  "category": "Objekte",
+  "subcategories": {
+    "Alltagsgegenstände": [
+      { "crew": ["Stuhl"], "imposter": ["Sessel", "Hocker"] },
+      { "crew": ["Tisch"], "imposter": ["Schreibtisch", "Couchtisch"] },
+      { "crew": ["Lampe"], "imposter": ["Kerze", "Leuchte"] },
+      { "crew": ["Tasse"], "imposter": ["Becher", "Glas"] },
+      { "crew": ["Löffel"], "imposter": ["Gabel", "Messer"] },
+      { "crew": ["Pfanne"], "imposter": ["Topf", "Wok"] },
+      { "crew": ["Buch"], "imposter": ["Heft", "Zeitschrift"] },
+      { "crew": ["Stift"], "imposter": ["Kugelschreiber", "Bleistift"] },
+      { "crew": ["Lineal"], "imposter": ["Geodreieck", "Zirkel"] },
+      { "crew": ["Schlüssel"], "imposter": ["Schloss", "Tür"] },
+      { "crew": ["Uhr"], "imposter": ["Wecker", "Armbanduhr"] },
+      { "crew": ["Brille"], "imposter": ["Kontaktlinse", "Sehhilfe"] }
+    ],
+    "Technik": [
+      { "crew": ["Handy"], "imposter": ["Smartphone", "Telefon"] },
+      { "crew": ["Laptop"], "imposter": ["Computer", "Tablet"] },
+      { "crew": ["Fernseher"], "imposter": ["Radio", "Bildschirm"] }
+    ]
+  }
+}

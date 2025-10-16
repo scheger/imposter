@@ -1,0 +1,30 @@
+{
+  "category": "Superhelden",
+  "subcategories": {
+    "Marvel": [
+      { "crew": ["Iron Man"], "imposter": ["Rüstung"] },
+      { "crew": ["Spider-Man"], "imposter": ["Netze"] },
+      { "crew": ["Hulk"], "imposter": ["Grün"] }
+    ],
+    "DC": [
+      { "crew": ["Batman"], "imposter": ["Dunkel"] },
+      { "crew": ["Superman"], "imposter": ["Fliegend"] },
+      { "crew": ["Wonder Woman"], "imposter": ["Stark"] }
+    ],
+    "Andere": [
+      { "crew": ["Hellboy"], "imposter": ["Hörner"] },
+      { "crew": ["Spawn"], "imposter": ["Höllisch"] },
+      { "crew": ["Kick-Ass"], "imposter": ["Selbstgemacht"] }
+    ],
+    "Anime und Manga": [
+      { "crew": ["Goku"], "imposter": ["Sagenhaft"] },
+      { "crew": ["Naruto"], "imposter": ["Ninja"] },
+      { "crew": ["Sailor Moon"], "imposter": ["Mond"] }
+    ],
+    "Videospiele": [
+      { "crew": ["Link"], "imposter": ["Schwert"] },
+      { "crew": ["Master Chief"], "imposter": ["Rüstung"] },
+      { "crew": ["Lara Croft"], "imposter": ["Archäologin"] }
+    ]
+  }
+}

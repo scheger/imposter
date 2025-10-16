@@ -1,0 +1,25 @@
+{
+  "category": "Gefühle",
+  "subcategories": {
+    "Positiv": [
+      { "crew": ["Freude"], "imposter": ["Glück", "Spaß"] },
+      { "crew": ["Liebe"], "imposter": ["Zuneigung", "Herz"] },
+      { "crew": ["Stolz"], "imposter": ["Erfolg", "Selbstbewusstsein"] }
+    ],
+    "Negativ": [
+      { "crew": ["Angst"], "imposter": ["Furcht", "Panik"] },
+      { "crew": ["Wut"], "imposter": ["Zorn", "Ärger"] },
+      { "crew": ["Trauer"], "imposter": ["Kummer", "Wehmut"] }
+    ],
+    "Neutral": [
+      { "crew": ["Neugier"], "imposter": ["Interesse", "Spannung"] },
+      { "crew": ["Ruhe"], "imposter": ["Gelassenheit", "Stille"] },
+      { "crew": ["Langeweile"], "imposter": ["Monotonie", "Eintönigkeit"] }
+    ],
+    "Sozial": [
+      { "crew": ["Eifersucht"], "imposter": ["Neid", "Missgunst"] },
+      { "crew": ["Dankbarkeit"], "imposter": ["Wertschätzung"] },
+      { "crew": ["Scham"], "imposter": ["Peinlichkeit", "Verlegenheit"] }
+    ]
+  }
+}

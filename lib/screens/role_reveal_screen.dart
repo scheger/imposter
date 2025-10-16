@@ -28,25 +28,25 @@ class _RoleRevealScreenState extends State<RoleRevealScreen> {
           _ => false,
         };
         if (showHint) {
-          return 'Du bist der Imposter!\n\nHinweis: ${settings.imposterWordQuestion}';
+          return 'Du bist der Imposter!\n\nHinweis: ${settings.imposterContent}';
         } else {
           return 'Du bist der Imposter!';
         }
       } else {
-        return 'Dein Wort: ${settings.crewWordQuestion}';
+        return 'Dein Wort: ${settings.crewContent}';
       }
     }
 
     if (settings.mode == 'undercover') {
       return player.isImposter
-          ? 'Deine Frage: ${settings.imposterWordQuestion}'
-          : 'Deine Frage: ${settings.crewWordQuestion}';
+          ? 'Deine Frage: ${settings.imposterContent}'
+          : 'Deine Frage: ${settings.crewContent}';
     }
 
     if (settings.mode == 'similar') {
       return player.isImposter
-          ? 'Dein Wort: ${settings.imposterWordQuestion}'
-          : 'Dein Wort: ${settings.crewWordQuestion}';
+          ? 'Dein Wort: ${settings.imposterContent}'
+          : 'Dein Wort: ${settings.crewContent}';
     }
 
     return 'Unbekannter Modus!';

@@ -26,22 +26,26 @@ class WordSubcategory {
 }
 
 class WordItem {
-  final String main;
-  final List<String> related;
-  final String hint;
+  final List<String> crew;
+  final List<String> imposter;
 
   WordItem({
-    required this.main,
-    required this.related,
-    required this.hint,
+    required this.crew,
+    required this.imposter,
   });
 
   factory WordItem.fromJson(Map<String, dynamic> json) {
+    List<String> toList(dynamic value) {
+      if (value is String) return [value];
+      if (value is List) return List<String>.from(value);
+      return [];
+    }
+
     return WordItem(
-      main: json['main'] ?? "",
-      hint: json['hint'] ?? "",
-      related: List<String>.from(json['related'] ?? []),
+      crew: toList(json['crew']),
+      imposter: toList(json['imposter']),
     );
   }
 }
+
 

@@ -34,11 +34,21 @@ class GameModeSelectionScreen extends StatelessWidget {
     final service = context.read<GameProvider>().service;
     service.settings = service.settings.copyWith(mode: modeKey);
 
+    // 🔹 Mapping auf das neue Enum
     Mode selectedMode;
-    if (modeKey == 'classic' || modeKey == 'similar' || modeKey == 'wordwar') {
-      selectedMode = Mode.words;
-    } else {
-      selectedMode = Mode.questions;
+    switch (modeKey) {
+      case 'classic':
+        selectedMode = Mode.classic;
+        break;
+      case 'similar':
+        selectedMode = Mode.similar;
+        break;
+      case 'undercover':
+        selectedMode = Mode.undercover;
+        break;
+      default:
+        // Optional: Fallback (z. B. wordwar ignorieren oder classic setzen)
+        selectedMode = Mode.classic;
     }
 
     Navigator.push(

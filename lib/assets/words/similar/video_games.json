@@ -1,0 +1,44 @@
+{
+  "category": "Videospiele",
+  "subcategories": {
+    "Klassiker": [
+      { "crew": ["Mario"], "imposter": ["Luigi", "Peach", "Bowser"] },
+      { "crew": ["Tetris"], "imposter": ["Blöcke", "Puzzle"] },
+      { "crew": ["Doom"], "imposter": ["Hölle", "Shooter"] },
+      { "crew": ["Pac-Man"], "imposter": ["Geister", "Labyrinth"] }
+    ],
+    "Multiplayer": [
+      { "crew": ["Fortnite"], "imposter": ["PUBG", "Apex Legends"] },
+      { "crew": ["League of Legends"], "imposter": ["Dota", "Heroes of the Storm"] },
+      { "crew": ["Valorant"], "imposter": ["Agent", "Shooter"] },
+      { "crew": ["Overwatch"], "imposter": ["Held", "Shooter"] },
+      { "crew": ["Minecraft"], "imposter": ["Blöcke", "Überleben"] },
+      { "crew": ["Among Us"], "imposter": ["Werwolf", "Betrug"] },
+      { "crew": ["Counter-Strike"], "imposter": ["Bomben", "Team"] },
+      { "crew": ["Fall Guys"], "imposter": ["Minispiele", "Bunte Figuren"] },
+      { "crew": ["World of Warcraft"], "imposter": ["Gilde", "Raids"] }
+    ],
+    "Rollenspiele": [
+      { "crew": ["Zelda"], "imposter": ["Link", "Ganondorf"] },
+      { "crew": ["Skyrim"], "imposter": ["Drachen", "Nord"] },
+      { "crew": ["The Witcher"], "imposter": ["Geralt", "Monster", "Hexer"] },
+      { "crew": ["Final Fantasy"], "imposter": ["Cloud", "Sephiroth"] },
+      { "crew": ["Elden Ring"], "imposter": ["Runen", "Boss"] },
+      { "crew": ["Pokémon"], "imposter": ["Pikachu", "Evoli", "Trainer"] },
+      { "crew": ["Dark Souls"], "imposter": ["Boss", "Tod"] },
+      { "crew": ["Baldur's Gate"], "imposter": ["Dungeons", "Magie"] }
+    ],
+    "Nintendo": [
+      { "crew": ["Kirby"], "imposter": ["Meta Knight", "Dedede"] },
+      { "crew": ["Donkey Kong"], "imposter": ["Diddy Kong", "Bananen"] },
+      { "crew": ["Pikmin"], "imposter": ["Blumen", "Strategie"] },
+      { "crew": ["Animal Crossing"], "imposter": ["Tom Nook", "Isabelle", "Dorf"] }
+    ],
+    "Retro": [
+      { "crew": ["Sonic"], "imposter": ["Tails", "Dr. Robotnik"] },
+      { "crew": ["Street Fighter"], "imposter": ["Ryu", "Chun-Li"] },
+      { "crew": ["Pong"], "imposter": ["Ball", "Schläger"] },
+      { "crew": ["Space Invaders"], "imposter": ["Aliens", "Schießen"] }
+    ]
+  }
+}

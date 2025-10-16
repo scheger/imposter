@@ -1,0 +1,53 @@
+{
+  "category": "Sport",
+  "subcategories": {
+    "Sportarten": [
+      { "crew": ["Fußball"], "imposter": ["Handball", "Basketball", "Rugby"] },
+      { "crew": ["Basketball"], "imposter": ["Volleyball", "Handball", "Football"] },
+      { "crew": ["Tennis"], "imposter": ["Badminton", "Squash", "Table Tennis"] },
+      { "crew": ["Leichtathletik"], "imposter": ["Hürdenlauf", "Weitsprung", "Kugelstoßen"] },
+      { "crew": ["Schwimmen"], "imposter": ["Wasserspringen", "Wasserball", "Synchronschwimmen"] },
+      { "crew": ["Boxen"], "imposter": ["Kickboxen", "MMA", "Ringen"] },
+      { "crew": ["Rugby"], "imposter": ["Football", "Fußball", "Lacrosse"] },
+      { "crew": ["Golf"], "imposter": ["Minigolf", "Golf-Cross", "Disc Golf"] },
+      { "crew": ["Eishockey"], "imposter": ["Rollhockey", "Inlinehockey", "Lacrosse"] },
+      { "crew": ["Badminton"], "imposter": ["Tennis", "Squash", "Tischtennis"] },
+      { "crew": ["Volleyball"], "imposter": ["Beachvolleyball", "Basketball", "Handball"] },
+      { "crew": ["American Football"], "imposter": ["Rugby", "Fußball"] },
+      { "crew": ["Lacrosse"], "imposter": ["Hockey", "Rugby", "Football"] },
+      { "crew": ["Tischtennis"], "imposter": ["Badminton", "Tennis", "Squash"] },
+      { "crew": ["Klettern"], "imposter": ["Bouldern", "Alpinismus"] },
+      { "crew": ["Skifahren"], "imposter": ["Snowboarden", "Langlauf"] },
+      { "crew": ["Snowboarden"], "imposter": ["Skifahren", "Ski Alpin"] },
+      { "crew": ["Surfen"], "imposter": ["Windsurfen", "Kitesurfen"] },
+      { "crew": ["Rudern"], "imposter": ["Kanu", "Kajak"] },
+      { "crew": ["Kanu"], "imposter": ["Kajak", "Rudern"] },
+      { "crew": ["Bogenschießen"], "imposter": ["Armbrust", "Schießen"] },
+      { "crew": ["Schießen"], "imposter": ["Bogenschießen", "Paintball"] },
+      { "crew": ["Ringen"], "imposter": ["Judo", "Kampfsport"] },
+      { "crew": ["Judo"], "imposter": ["Ringen", "Karate"] },
+      { "crew": ["Karate"], "imposter": ["Taekwondo", "Judo"] },
+      { "crew": ["Taekwondo"], "imposter": ["Karate", "Judo"] },
+      { "crew": ["Völkerball"], "imposter": ["Handball", "Basketball"] },
+      { "crew": ["Ultimate Frisbee"], "imposter": ["Frisbee", "Football"] },
+      { "crew": ["Dart"], "imposter": ["Bowling", "Billard"] },
+      { "crew": ["Bowling"], "imposter": ["Dart", "Kegeln"] }
+    ],
+    "Sport Equipment": [
+      { "crew": ["Ball"], "imposter": ["Schläger", "Schuhe", "Trikot"] },
+      { "crew": ["Schläger"], "imposter": ["Ball", "Handschuhe", "Netz"] },
+      { "crew": ["Schuhe"], "imposter": ["Socken", "Bandagen", "Helm"] },
+      { "crew": ["Helm"], "imposter": ["Schoner", "Schuhe", "Handschuhe"] },
+      { "crew": ["Trikot"], "imposter": ["Shorts", "Socken", "Schuhe"] },
+      { "crew": ["Handschuhe"], "imposter": ["Schläger", "Helm", "Schoner"] }
+    ],
+    "Bekannte Sportler": [
+      { "crew": ["Usain Bolt"], "imposter": ["Carl Lewis", "Justin Gatlin", "Michael Johnson"] },
+      { "crew": ["Michael Phelps"], "imposter": ["Mark Spitz", "Ryan Lochte", "Ian Thorpe"] },
+      { "crew": ["Serena Williams"], "imposter": ["Steffi Graf", "Martina Navratilova", "Venus Williams"] },
+      { "crew": ["Lionel Messi"], "imposter": ["Cristiano Ronaldo", "Neymar", "Kylian Mbappé"] },
+      { "crew": ["Simone Biles"], "imposter": ["Nadia Comaneci", "Gabby Douglas", "Aly Raisman"] },
+      { "crew": ["Roger Federer"], "imposter": ["Rafael Nadal", "Novak Djokovic", "Andy Murray"] }
+    ]
+  }
+}

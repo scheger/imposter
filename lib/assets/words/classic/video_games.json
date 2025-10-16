@@ -1,0 +1,44 @@
+{
+  "category": "Videospiele",
+  "subcategories": {
+    "Klassiker": [
+      { "crew": ["Mario"], "imposter": ["Springend"] },
+      { "crew": ["Tetris"], "imposter": ["Fallend"] },
+      { "crew": ["Doom"], "imposter": ["Dämonen"] },
+      { "crew": ["Pac-Man"], "imposter": ["Fressend"] }
+    ],
+    "Multiplayer": [
+      { "crew": ["Fortnite"], "imposter": ["Battle"] },
+      { "crew": ["League of Legends"], "imposter": ["MOBA"] },
+      { "crew": ["Valorant"], "imposter": ["Strategisch"] },
+      { "crew": ["Overwatch"], "imposter": ["Teamfight"] },
+      { "crew": ["Minecraft"], "imposter": ["Pixelig"] },
+      { "crew": ["Among Us"], "imposter": ["Verdächtig"] },
+      { "crew": ["Counter-Strike"], "imposter": ["Terroristen"] },
+      { "crew": ["Fall Guys"], "imposter": ["Chaos"] },
+      { "crew": ["World of Warcraft"], "imposter": ["MMORPG"] }
+    ],
+    "Rollenspiele": [
+      { "crew": ["Zelda"], "imposter": ["Abenteuer"] },
+      { "crew": ["Skyrim"], "imposter": ["Freiheit"] },
+      { "crew": ["The Witcher"], "imposter": ["Silber"] },
+      { "crew": ["Final Fantasy"], "imposter": ["JRPG"] },
+      { "crew": ["Elden Ring"], "imposter": ["Schwierig"] },
+      { "crew": ["Pokémon"], "imposter": ["Fangen"] },
+      { "crew": ["Dark Souls"], "imposter": ["Schwierig"] },
+      { "crew": ["Baldur's Gate"], "imposter": ["Würfel"] }
+    ],
+    "Nintendo": [
+      { "crew": ["Kirby"], "imposter": ["Schluckend"] },
+      { "crew": ["Donkey Kong"], "imposter": ["Stark"] },
+      { "crew": ["Pikmin"], "imposter": ["Mini"] },
+      { "crew": ["Animal Crossing"], "imposter": ["Gemütlich"] }
+    ],
+    "Retro": [
+      { "crew": ["Sonic"], "imposter": ["Schnell"] },
+      { "crew": ["Street Fighter"], "imposter": ["Kämpfend"] },
+      { "crew": ["Pong"], "imposter": ["Erstes Spiel"] },
+      { "crew": ["Space Invaders"], "imposter": ["Klassisch"] }
+    ]
+  }
+}

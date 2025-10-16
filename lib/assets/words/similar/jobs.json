@@ -1,0 +1,30 @@
+{
+  "category": "Berufe",
+  "subcategories": {
+    "Medizin und Pflege": [
+      { "crew": ["Arzt"], "imposter": ["Chirurg", "Zahnarzt", "Hausarzt"] },
+      { "crew": ["Krankenschwester"], "imposter": ["Pfleger", "Sanitäter"] },
+      { "crew": ["Tierarzt"], "imposter": ["Veterinär", "Haustiere"] }
+    ],
+    "Handwerk": [
+      { "crew": ["Bäcker"], "imposter": ["Konditor", "Koch"] },
+      { "crew": ["Schreiner"], "imposter": ["Tischler", "Zimmermann"] },
+      { "crew": ["Elektriker"], "imposter": ["Installateur", "Techniker"] }
+    ],
+    "Technik und Wissenschaft": [
+      { "crew": ["Ingenieur"], "imposter": ["Architekt", "Techniker"] },
+      { "crew": ["Programmierer"], "imposter": ["Entwickler", "Coder"] },
+      { "crew": ["Forscher"], "imposter": ["Wissenschaftler", "Laborant"] }
+    ],
+    "Dienstleistung": [
+      { "crew": ["Lehrer"], "imposter": ["Professor", "Dozent"] },
+      { "crew": ["Kellner"], "imposter": ["Servicekraft", "Barkeeper"] },
+      { "crew": ["Polizist"], "imposter": ["Kommissar", "Wachmann"] }
+    ],
+    "Kunst und Medien": [
+      { "crew": ["Schauspieler"], "imposter": ["Regisseur", "Komiker"] },
+      { "crew": ["Musiker"], "imposter": ["Sänger", "Komponist"] },
+      { "crew": ["Maler"], "imposter": ["Künstler", "Designer"] }
+    ]
+  }
+}

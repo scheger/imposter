@@ -1,0 +1,30 @@
+{
+  "category": "Superhelden",
+  "subcategories": {
+    "Marvel": [
+      { "crew": ["Iron Man"], "imposter": ["Tony Stark", "Avengers"] },
+      { "crew": ["Spider-Man"], "imposter": ["Venom", "Mary Jane"] },
+      { "crew": ["Hulk"], "imposter": ["Bruce Banner", "Wut"] }
+    ],
+    "DC": [
+      { "crew": ["Batman"], "imposter": ["Robin", "Joker"] },
+      { "crew": ["Superman"], "imposter": ["Lois Lane", "Krypton"] },
+      { "crew": ["Wonder Woman"], "imposter": ["Amazonen", "Justice League"] }
+    ],
+    "Andere": [
+      { "crew": ["Hellboy"], "imposter": ["Dämon", "Rot"] },
+      { "crew": ["Spawn"], "imposter": ["Dunkelheit", "Antiheld"] },
+      { "crew": ["Kick-Ass"], "imposter": ["Maske", "Comic"] }
+    ],
+    "Anime und Manga": [
+      { "crew": ["Goku"], "imposter": ["Dragon Ball", "Kamehameha"] },
+      { "crew": ["Naruto"], "imposter": ["Rasengan", "Konoha"] },
+      { "crew": ["Sailor Moon"], "imposter": ["Tuxedo Mask", "Magie"] }
+    ],
+    "Videospiele": [
+      { "crew": ["Link"], "imposter": ["Zelda", "Hyrule"] },
+      { "crew": ["Master Chief"], "imposter": ["Halo", "Spartan"] },
+      { "crew": ["Lara Croft"], "imposter": ["Tomb Raider", "Abenteuer"] }
+    ]
+  }
+}

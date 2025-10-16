@@ -1,0 +1,58 @@
+{
+  "category": "Tiere",
+  "subcategories": {
+    "Säugetiere": [
+      { "crew": ["Hund"], "imposter": ["Treue"] },
+      { "crew": ["Katze"], "imposter": ["Unabhängig"] },
+      { "crew": ["Elefant"], "imposter": ["Majestätisch"] },
+      { "crew": ["Pferd"], "imposter": ["Beweglich"] },
+      { "crew": ["Bär"], "imposter": ["Gemütlich"] },
+      { "crew": ["Affe"], "imposter": ["Neugierig"] },
+      { "crew": ["Känguru"], "imposter": ["Springend"] },
+      { "crew": ["Luchs"], "imposter": ["Lauernd"] },
+      { "crew": ["Otter"], "imposter": ["Verspielt"] },
+      { "crew": ["Igel"], "imposter": ["Verteidigung"] },
+      { "crew": ["Giraffe"], "imposter": ["Hoch"] },
+      { "crew": ["Wal"], "imposter": ["Gesang"] },
+      { "crew": ["Seehund"], "imposter": ["Leben am Wasser"] },
+      { "crew": ["Schaf"], "imposter": ["Folgsam"] },
+      { "crew": ["Schwein"], "imposter": ["Neugierig"] },
+      { "crew": ["Meerschweinchen"], "imposter": ["Klein"] },
+      { "crew": ["Ratte"], "imposter": ["Anpassungsfähig"] },
+      { "crew": ["Eichhörnchen"], "imposter": ["Sammelnd"] },
+      { "crew": ["Tasmanischer Teufel"], "imposter": ["Rau"] },
+      { "crew": ["Tamarin"], "imposter": ["Klein"] },
+      { "crew": ["Löwe"], "imposter": ["Stark"] },
+      { "crew": ["Tiger"], "imposter": ["Einzeln"] },
+      { "crew": ["Panther"], "imposter": ["Geheimnisvoll"] }
+    ],
+    "Vögel": [
+      { "crew": ["Vogel"], "imposter": ["Frei"] },
+      { "crew": ["Pinguin"], "imposter": ["Gesellig"] },
+      { "crew": ["Emu"], "imposter": ["Groß"] },
+      { "crew": ["Adler"], "imposter": ["Hoch"] },
+      { "crew": ["Falke"], "imposter": ["Schnell"] },
+      { "crew": ["Eule"], "imposter": ["Weisheit"] },
+      { "crew": ["Papagei"], "imposter": ["Gesprächig"] },
+      { "crew": ["Huhn"], "imposter": ["Gesellig"] }
+    ],
+    "Reptilien und Amphibien": [
+      { "crew": ["Schlange"], "imposter": ["Listig"] },
+      { "crew": ["Krokodil"], "imposter": ["Geduldig"] }
+    ],
+    "Meerestiere": [
+      { "crew": ["Fisch"], "imposter": ["Fließend"] },
+      { "crew": ["Oktopus"], "imposter": ["Schlau"] },
+      { "crew": ["Muschel"], "imposter": ["Versteckt"] },
+      { "crew": ["Krabbe"], "imposter": ["Seitwärts"] }
+    ],
+    "Insekten und Kleintiere": [
+      { "crew": ["Schmetterling"], "imposter": ["Leicht"] },
+      { "crew": ["Biene"], "imposter": ["Fleißig"] },
+      { "crew": ["Spinne"], "imposter": ["Geduldig"] },
+      { "crew": ["Wurm"], "imposter": ["Unauffällig"] },
+      { "crew": ["Grashüpfer"], "imposter": ["Springend"] },
+      { "crew": ["Marienkäfer"], "imposter": ["Glänzend"] }
+    ]
+  }
+}

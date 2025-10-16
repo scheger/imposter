@@ -1,0 +1,25 @@
+{
+  "category": "Gefühle",
+  "subcategories": {
+    "Positiv": [
+      { "crew": ["Freude"], "imposter": ["Lächelnd"] },
+      { "crew": ["Liebe"], "imposter": ["Wärmend"] },
+      { "crew": ["Stolz"], "imposter": ["Erhobenen Hauptes"] }
+    ],
+    "Negativ": [
+      { "crew": ["Angst"], "imposter": ["Zitternd"] },
+      { "crew": ["Wut"], "imposter": ["Rötend"] },
+      { "crew": ["Trauer"], "imposter": ["Tränend"] }
+    ],
+    "Neutral": [
+      { "crew": ["Neugier"], "imposter": ["Fragend"] },
+      { "crew": ["Ruhe"], "imposter": ["Entspannend"] },
+      { "crew": ["Langeweile"], "imposter": ["Gähnend"] }
+    ],
+    "Sozial": [
+      { "crew": ["Eifersucht"], "imposter": ["Vergleichend"] },
+      { "crew": ["Dankbarkeit"], "imposter": ["Verbindend"] },
+      { "crew": ["Scham"], "imposter": ["Errötend"] }
+    ]
+  }
+}

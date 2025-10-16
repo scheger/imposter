@@ -138,11 +138,17 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
       }
     }
 
+    // --- Auswahl aus den Listen (neu: crew / imposter als List<String>)
+    final crewList = randomItem.crew;
+    final imposterList = randomItem.imposter;
+
+    final crew = (crewList.isNotEmpty ? (crewList..shuffle()).first : '');
+    final imposter = (imposterList.isNotEmpty ? (imposterList..shuffle()).first : '');
+
     gameService.settings = gameService.settings.copyWith(
       category: chosenCategory,
-      crewWordQuestion: randomItem.main,
-      imposterWordQuestion: randomItem.hint,
-      relatedWords: randomItem.related,
+      crewContent: crew,
+      imposterContent: imposter,
     );
 
     Navigator.push(
@@ -183,11 +189,17 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
       }
     }
 
+    // --- Auswahl aus den Listen (neu: crew / imposter als List<String>)
+    final crewList = randomItem.crew;
+    final imposterList = randomItem.imposter;
+
+    final crew = (crewList.isNotEmpty ? (crewList..shuffle()).first : '');
+    final imposter = (imposterList.isNotEmpty ? (imposterList..shuffle()).first : '');
+
     gameService.settings = gameService.settings.copyWith(
       category: chosenCategory,
-      crewWordQuestion: randomItem.main,
-      imposterWordQuestion: randomItem.hint,
-      relatedWords: randomItem.related,
+      crewContent: crew,
+      imposterContent: imposter,
     );
 
     Navigator.push(
@@ -509,6 +521,19 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
     });
   }
 
+  String _getModeTitle(Mode mode) {
+    switch (mode) {
+      case Mode.classic:
+        return 'Wörterkategorie auswählen';
+      case Mode.similar:
+        return 'Wörterkategorie auswählen';
+      case Mode.undercover:
+        return 'Fragenkategorie auswählen';
+      default:
+        return 'Themen auswählen';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final categoryService = Provider.of<CategoryService>(context);
@@ -523,7 +548,7 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.mode == Mode.words ? 'Wörter auswählen' : 'Fragen auswählen'),
+        title: Text(_getModeTitle(widget.mode)),
         actions: [
           IconButton(
             icon: Icon(_dragMode ? Icons.check : Icons.swap_vert),
@@ -553,9 +578,9 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
                         backgroundColor: Colors.orangeAccent,
                       ),
                       child: Text(
-                        widget.mode == Mode.words
-                            ? 'Zufall aus allen Themen'
-                            : 'Zufallsfrage aus allen Kategorien',
+                        widget.mode == Mode.undercover
+                            ? 'Zufallsfrage aus allen Kategorien'
+                            : 'Zufall aus allen Themen',
                         style: const TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),

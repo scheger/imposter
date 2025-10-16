@@ -1,27 +1,27 @@
-{    
-    "category": "Fun2",
-    "subcategories": {
-        "Allgemein": [
-            { "main": "Welche Superkraft hättest du gerne?", "hint": "Welche Superkraft würdest du lieber für einen Tag haben?" },
-            { "main": "Wenn du ein Tier sein könntest, welches wärst du?", "hint": "Welches Tier würdest du gerne für einen Tag sein?" },
-            { "main": "Was ist dein Lieblingsspiel?", "hint": "Welches Spiel würdest du am liebsten erfunden haben?" }
-        ],
-        "Absurde fragen": [
-            { "main": "Wenn du plötzlich unsichtbar wärst, was würdest du tun?", "hint": "Wenn du plötzlich durchsichtig wärst, wie würdest du reagieren?" },
-            { "main": "Was würdest du tun, wenn alle Menschen plötzlich rückwärts laufen?", "hint": "Wie würdest du dich fühlen, wenn plötzlich alles verkehrt herum wäre?" },
-            { "main": "Welche Farbe hätte der Himmel, wenn du ihn streichen könntest?", "hint": "Welche Farbe würdest du wählen, wenn alles gleich bliebe?" }
-        ],
-        "Peinliche Szenarien": [
-            { "main": "Was war dein peinlichster Moment in der Schule?", "hint": "Was wäre dein peinlichster Moment in einer fiktiven Schule?" },
-            { "main": "Hast du schon mal laut in der Öffentlichkeit gesungen?", "hint": "Würdest du heimlich singen, wenn niemand zuschaut?" },
-            { "main": "Hast du schon mal etwas fallen lassen und es zerschlagen?", "hint": "Was würdest du fallen lassen, nur um es auszuprobieren?" }
-        ],
-        "Neu - Gedankenexperiment": [
-            { "main": "Wenn du für einen Tag alles entscheiden könntest, was würdest du ändern?", "hint": "Wenn du nur eine Kleinigkeit ändern könntest, welche wäre es?" },
-            { "main": "Wenn du mit Tieren sprechen könntest, welches würdest du zuerst fragen?", "hint": "Welches Tier würdest du zuerst fragen, wenn es sprechen könnte?" },
-            { "main": "Wenn dein Leben ein Film wäre, welche Szene würdest du umschreiben?", "hint": "Welche Szene würdest du umschreiben, um sie spannender zu machen?" },
-            { "main": "Wenn du plötzlich eine berühmte Persönlichkeit wärst, wer wärst du?", "hint": "Welche Eigenschaft würdest du übernehmen, wenn du berühmte wärst?" },
-            { "main": "Wenn du eine neue Farbe erfinden könntest, wie würde sie aussehen?", "hint": "Wie würdest du die neue Farbe nennen?" }
-        ]
-    }
+{
+  "category": "Fun2",
+  "subcategories": {
+    "Allgemein": [
+      { "crew": ["Welche Superkraft hättest du gerne?"], "imposter": ["Welche Superkraft würdest du lieber für einen Tag haben?"] },
+      { "crew": ["Wenn du ein Tier sein könntest, welches wärst du?"], "imposter": ["Welches Tier würdest du gerne für einen Tag sein?"] },
+      { "crew": ["Was ist dein Lieblingsspiel?"], "imposter": ["Welches Spiel würdest du am liebsten erfunden haben?"] }
+    ],
+    "Absurde fragen": [
+      { "crew": ["Wenn du plötzlich unsichtbar wärst, was würdest du tun?"], "imposter": ["Wenn du plötzlich durchsichtig wärst, wie würdest du reagieren?"] },
+      { "crew": ["Was würdest du tun, wenn alle Menschen plötzlich rückwärts laufen?"], "imposter": ["Wie würdest du dich fühlen, wenn plötzlich alles verkehrt herum wäre?"] },
+      { "crew": ["Welche Farbe hätte der Himmel, wenn du ihn streichen könntest?"], "imposter": ["Welche Farbe würdest du wählen, wenn alles gleich bliebe?"] }
+    ],
+    "Peinliche Szenarien": [
+      { "crew": ["Was war dein peinlichster Moment in der Schule?"], "imposter": ["Was wäre dein peinlichster Moment in einer fiktiven Schule?"] },
+      { "crew": ["Hast du schon mal laut in der Öffentlichkeit gesungen?"], "imposter": ["Würdest du heimlich singen, wenn niemand zuschaut?"] },
+      { "crew": ["Hast du schon mal etwas fallen lassen und es zerschlagen?"], "imposter": ["Was würdest du fallen lassen, nur um es auszuprobieren?"] }
+    ],
+    "Neu - Gedankenexperiment": [
+      { "crew": ["Wenn du für einen Tag alles entscheiden könntest, was würdest du ändern?"], "imposter": ["Wenn du nur eine Kleinigkeit ändern könntest, welche wäre es?"] },
+      { "crew": ["Wenn du mit Tieren sprechen könntest, welches würdest du zuerst fragen?"], "imposter": ["Welches Tier würdest du zuerst fragen, wenn es sprechen könnte?"] },
+      { "crew": ["Wenn dein Leben ein Film wäre, welche Szene würdest du umschreiben?"], "imposter": ["Welche Szene würdest du umschreiben, um sie spannender zu machen?"] },
+      { "crew": ["Wenn du plötzlich eine berühmte Persönlichkeit wärst, wer wärst du?"], "imposter": ["Welche Eigenschaft würdest du übernehmen, wenn du berühmt wärst?"] },
+      { "crew": ["Wenn du eine neue Farbe erfinden könntest, wie würde sie aussehen?"], "imposter": ["Wie würdest du die neue Farbe nennen?"] }
+    ]
+  }
 }

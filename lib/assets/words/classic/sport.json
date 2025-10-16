@@ -1,0 +1,53 @@
+{
+  "category": "Sport",
+  "subcategories": {
+    "Sportarten": [
+      { "crew": ["Fußball"], "imposter": ["beliebtestes Spiel"] },
+      { "crew": ["Basketball"], "imposter": ["Korb"] },
+      { "crew": ["Tennis"], "imposter": ["Schläger"] },
+      { "crew": ["Leichtathletik"], "imposter": ["Laufen"] },
+      { "crew": ["Schwimmen"], "imposter": ["Wasser"] },
+      { "crew": ["Boxen"], "imposter": ["Kampf"] },
+      { "crew": ["Rugby"], "imposter": ["Kontakt"] },
+      { "crew": ["Golf"], "imposter": ["Präzision"] },
+      { "crew": ["Eishockey"], "imposter": ["Schläger"] },
+      { "crew": ["Badminton"], "imposter": ["Federball"] },
+      { "crew": ["Volleyball"], "imposter": ["Netz"] },
+      { "crew": ["American Football"], "imposter": ["Taktik"] },
+      { "crew": ["Lacrosse"], "imposter": ["Stock"] },
+      { "crew": ["Tischtennis"], "imposter": ["Kleiner Ball"] },
+      { "crew": ["Klettern"], "imposter": ["Höhen"] },
+      { "crew": ["Skifahren"], "imposter": ["Schnee"] },
+      { "crew": ["Snowboarden"], "imposter": ["Board"] },
+      { "crew": ["Surfen"], "imposter": ["Wellen"] },
+      { "crew": ["Rudern"], "imposter": ["Wasser"] },
+      { "crew": ["Kanu"], "imposter": ["Paddel"] },
+      { "crew": ["Bogenschießen"], "imposter": ["Ziel"] },
+      { "crew": ["Schießen"], "imposter": ["Präzision"] },
+      { "crew": ["Ringen"], "imposter": ["Körperkontakt"] },
+      { "crew": ["Judo"], "imposter": ["Wurf"] },
+      { "crew": ["Karate"], "imposter": ["Schlag"] },
+      { "crew": ["Taekwondo"], "imposter": ["Kick"] },
+      { "crew": ["Völkerball"], "imposter": ["Spaß"] },
+      { "crew": ["Ultimate Frisbee"], "imposter": ["Scheibe"] },
+      { "crew": ["Dart"], "imposter": ["Wurf"] },
+      { "crew": ["Bowling"], "imposter": ["Pins"] }
+    ],
+    "Sport Equipment": [
+      { "crew": ["Ball"], "imposter": ["Grundausstattung"] },
+      { "crew": ["Schläger"], "imposter": ["Spielgerät"] },
+      { "crew": ["Schuhe"], "imposter": ["Tragen"] },
+      { "crew": ["Helm"], "imposter": ["Schutz"] },
+      { "crew": ["Trikot"], "imposter": ["Teamkleidung"] },
+      { "crew": ["Handschuhe"], "imposter": ["Schutz"] }
+    ],
+    "Bekannte Sportler": [
+      { "crew": ["Usain Bolt"], "imposter": ["Sprint"] },
+      { "crew": ["Michael Phelps"], "imposter": ["Schwimmen"] },
+      { "crew": ["Serena Williams"], "imposter": ["Tennis"] },
+      { "crew": ["Lionel Messi"], "imposter": ["Fußball"] },
+      { "crew": ["Simone Biles"], "imposter": ["Turnen"] },
+      { "crew": ["Roger Federer"], "imposter": ["Tennis"] }
+    ]
+  }
+}

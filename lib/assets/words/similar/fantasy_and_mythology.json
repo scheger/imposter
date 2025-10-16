@@ -1,0 +1,53 @@
+{
+  "category": "Fantasy und Mythologie",
+  "subcategories": {
+    "Götter": [
+      { "crew": ["Zeus"], "imposter": ["Blitz", "Olymp"] },
+      { "crew": ["Odin"], "imposter": ["Rabe", "Asgard"] },
+      { "crew": ["Thor"], "imposter": ["Hammer", "Donner"] },
+      { "crew": ["Athene"], "imposter": ["Weisheit", "Eule"] },
+      { "crew": ["Hades"], "imposter": ["Unterwelt", "Kette"] },
+      { "crew": ["Loki"], "imposter": ["Trickster", "Gestaltwandler"] },
+      { "crew": ["Ra"], "imposter": ["Sonne", "Ägypten"] },
+      { "crew": ["Anubis"], "imposter": ["Schakal", "Totenritual"] },
+      { "crew": ["Poseidon"], "imposter": ["Meer", "Dreizack"] },
+      { "crew": ["Hera"], "imposter": ["Ehe", "Pfau"] }
+    ],
+    "Kreaturen": [
+      { "crew": ["Drache"], "imposter": ["Feuer", "Flügel"] },
+      { "crew": ["Einhor"], "imposter": ["Horn", "Magie"] },
+      { "crew": ["Zentaur"], "imposter": ["Pferd", "Mensch"] },
+      { "crew": ["Greif"], "imposter": ["Löwe", "Adler"] },
+      { "crew": ["Phönix"], "imposter": ["Feuer", "Wiedergeburt"] },
+      { "crew": ["Hydra"], "imposter": ["Kopf", "Wasser"] },
+      { "crew": ["Minotaurus"], "imposter": ["Labyrinth", "Stier"] },
+      { "crew": ["Sphinx"], "imposter": ["Rätsel", "Löwe"] },
+      { "crew": ["Banshee"], "imposter": ["Schrei", "Tod"] },
+      { "crew": ["Sirene"], "imposter": ["Meer", "Gesang"] }
+    ],
+    "Artefakte": [
+      { "crew": ["Excalibur"], "imposter": ["Schwert", "Artus"] },
+      { "crew": ["Heiliger Gral"], "imposter": ["Kelch", "Legende"] },
+      { "crew": ["Mjölnir"], "imposter": ["Hammer", "Thor"] },
+      { "crew": ["Ring der Macht"], "imposter": ["Sauron", "Mittelerde"] },
+      { "crew": ["Golden Fleece"], "imposter": ["Jason", "Argonauten"] },
+      { "crew": ["Pandoras Box"], "imposter": ["Mythos", "Unglück"] },
+      { "crew": ["Triforce"], "imposter": ["Zelda", "Kraft"] },
+      { "crew": ["Stormbreaker"], "imposter": ["Axt", "Thor"] },
+      { "crew": ["Amulett von Samarkand"], "imposter": ["Magie", "Jonathan Strange"] },
+      { "crew": ["Necronomicon"], "imposter": ["Buch", "Horror"] }
+    ],
+    "Orte & Reiche": [
+      { "crew": ["Asgard"], "imposter": ["Götter", "Nord"] },
+      { "crew": ["Mittelerde"], "imposter": ["Hobbit", "Ring"] },
+      { "crew": ["Avalon"], "imposter": ["Artus", "Insel"] },
+      { "crew": ["Atlantis"], "imposter": ["Unterwasser", "Legende"] },
+      { "crew": ["Narnia"], "imposter": ["Löwe", "Tür"] },
+      { "crew": ["Olymp"], "imposter": ["Götter", "Griechen"] },
+      { "crew": ["Hogwarts"], "imposter": ["Zauberer", "Schule"] },
+      { "crew": ["Mordor"], "imposter": ["Sauron", "Dunkelheit"] },
+      { "crew": ["Camelot"], "imposter": ["Ritter", "Artus"] },
+      { "crew": ["Underland"], "imposter": ["Alice", "Abenteuer"] }
+    ]
+  }
+}

@@ -5,12 +5,13 @@ import '../models/words.dart';
 import '../models/game_settings.dart';
 import 'game_service.dart'; // 🔹 wichtig für persistentes Speichern
 
-enum Mode { words, questions }
+enum Mode { classic, similar, undercover }
 
 class CategoryService extends ChangeNotifier {
   final Map<Mode, List<WordCategory>> _categories = {
-    Mode.words: [],
-    Mode.questions: [],
+    Mode.classic: [],
+    Mode.similar: [],
+    Mode.undercover: [],
   };
 
   bool _initialized = false;
@@ -22,8 +23,9 @@ class CategoryService extends ChangeNotifier {
 
   Future<void> init() async {
     await _loadAllAssets();
-    _applySavedOrder(Mode.words);
-    _applySavedOrder(Mode.questions);
+    _applySavedOrder(Mode.classic);
+    _applySavedOrder(Mode.undercover);
+    _applySavedOrder(Mode.similar);
     _initialized = true;
     notifyListeners();
   }
@@ -36,11 +38,15 @@ class CategoryService extends ChangeNotifier {
     final Map<String, dynamic> manifestMap = json.decode(manifest);
 
     final wordPaths = manifestMap.keys
-        .where((k) => k.startsWith('lib/assets/words/') && k.endsWith('.json'))
+        .where((k) => k.startsWith('lib/assets/words/classic/') && k.endsWith('.json'))
         .toList()
       ..sort();
     final questionPaths = manifestMap.keys
         .where((k) => k.startsWith('lib/assets/questions/') && k.endsWith('.json'))
+        .toList()
+      ..sort();
+    final similarPaths = manifestMap.keys
+        .where((k) => k.startsWith('lib/assets/words/similar/') && k.endsWith('.json'))
         .toList()
       ..sort();
 
@@ -48,11 +54,15 @@ class CategoryService extends ChangeNotifier {
         await Future.wait(wordPaths.map(_loadCategoryFromAsset));
     final loadedQuestions =
         await Future.wait(questionPaths.map(_loadCategoryFromAsset));
+    final loadedSimilar =
+        await Future.wait(similarPaths.map(_loadCategoryFromAsset));
 
-    _categories[Mode.words] =
+    _categories[Mode.classic] =
         loadedWords.whereType<WordCategory>().toList();
-    _categories[Mode.questions] =
+    _categories[Mode.undercover] =
         loadedQuestions.whereType<WordCategory>().toList();
+    _categories[Mode.similar] =
+        loadedSimilar.whereType<WordCategory>().toList();
   }
 
   Future<WordCategory?> _loadCategoryFromAsset(String path) async {
@@ -78,9 +88,19 @@ class CategoryService extends ChangeNotifier {
   }
 
   void _applySavedOrder(Mode mode) {
-    final saved = mode == Mode.words
-        ? settings.categoryOrderWords
-        : settings.categoryOrderQuestions;
+    List<String> saved;
+
+    switch (mode) {
+      case Mode.classic:
+        saved = settings.categoryOrderClassic;
+        break;
+      case Mode.similar:
+        saved = settings.categoryOrderSimilar;
+        break;
+      case Mode.undercover:
+        saved = settings.categoryOrderUndercover;
+        break;
+    }
 
     if (saved.isEmpty) return;
 
@@ -97,21 +117,26 @@ class CategoryService extends ChangeNotifier {
     _categories[mode] = reordered;
   }
 
+
   /// Reihenfolge überschreiben und **persistieren**
   void updateOrder(Mode mode, List<WordCategory> newOrder, GameService gameService) {
     _categories[mode] = List<WordCategory>.from(newOrder);
 
-    // Speichern in Settings
     final names = _categories[mode]!.map((c) => c.name).toList();
-    if (mode == Mode.words) {
-      settings = settings.copyWith(categoryOrderWords: names);
-    } else {
-      settings = settings.copyWith(categoryOrderQuestions: names);
+
+    switch (mode) {
+      case Mode.classic:
+        settings = settings.copyWith(categoryOrderClassic: names);
+        break;
+      case Mode.similar:
+        settings = settings.copyWith(categoryOrderSimilar: names);
+        break;
+      case Mode.undercover:
+        settings = settings.copyWith(categoryOrderUndercover: names);
+        break;
     }
 
-    // ⚡ Persistenz über GameService
     gameService.updateSettings(settings);
-
     notifyListeners();
   }
 

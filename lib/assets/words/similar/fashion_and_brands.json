@@ -1,0 +1,70 @@
+{
+  "category": "Mode und Marken",
+  "subcategories": {
+    "Luxusmarken": [
+      { "crew": ["Gucci"], "imposter": ["Italien", "Handtaschen"] },
+      { "crew": ["Louis Vuitton"], "imposter": ["Koffer", "Monogramm"] },
+      { "crew": ["Chanel"], "imposter": ["Parfum", "Tweeds"] },
+      { "crew": ["Prada"], "imposter": ["Mailand", "Minimalismus"] },
+      { "crew": ["Dior"], "imposter": ["Kleider", "Make-up"] },
+      { "crew": ["Versace"], "imposter": ["Medusa", "Gold"] },
+      { "crew": ["Hermès"], "imposter": ["Tücher", "Birkin"] },
+      { "crew": ["Balenciaga"], "imposter": ["Sneaker", "Avantgarde"] },
+      { "crew": ["Givenchy"], "imposter": ["Eleganz", "Haute Couture"] },
+      { "crew": ["Valentino"], "imposter": ["Rot", "Abendkleider"] }
+    ],
+    "Streetwear": [
+      { "crew": ["Supreme"], "imposter": ["Skate", "Boxlogo"] },
+      { "crew": ["Off-White"], "imposter": ["Diagonale Streifen", "Designer"] },
+      { "crew": ["Palace"], "imposter": ["London", "Skateboard"] },
+      { "crew": ["Stüssy"], "imposter": ["Graffiti", "Surf"] },
+      { "crew": ["A Bathing Ape"], "imposter": ["Bape", "Kapuzen"] },
+      { "crew": ["Fear of God"], "imposter": ["Jerry Lorenzo", "Oversize"] },
+      { "crew": ["Nike SB"], "imposter": ["Skateboarding", "Sneaker"] },
+      { "crew": ["Adidas Originals"], "imposter": ["Trefoil", "Sneaker"] },
+      { "crew": ["Kith"], "imposter": ["New York", "Kooperationen"] },
+      { "crew": ["Carhartt WIP"], "imposter": ["Workwear", "Street"] }
+    ],
+    "Schuhe": [
+      { "crew": ["Air Jordan 1"], "imposter": ["Sneaker", "Basketball"] },
+      { "crew": ["Converse Chuck Taylor"], "imposter": ["All Star", "Canvas"] },
+      { "crew": ["Adidas Yeezy"], "imposter": ["Kanye West", "Boost"] },
+      { "crew": ["Nike Air Max"], "imposter": ["Luftpolster", "Laufschuhe"] },
+      { "crew": ["Dr. Martens"], "imposter": ["Boots", "Gelbe Naht"] },
+      { "crew": ["Balenciaga Triple S"], "imposter": ["Chunky", "Designer"] },
+      { "crew": ["Vans Old Skool"], "imposter": ["Skate", "Seitlicher Streifen"] },
+      { "crew": ["Reebok Classic"], "imposter": ["Leder", "Retro"] },
+      { "crew": ["New Balance 550"], "imposter": ["Retro", "Basketball"] },
+      { "crew": ["Gucci Ace"], "imposter": ["Sneaker", "Logo"] }
+    ],
+    "Fahrzeugmarken": [
+      { "crew": ["Ferrari"], "imposter": ["Italien", "Sportwagen"] },
+      { "crew": ["Lamborghini"], "imposter": ["Italien", "Exotik"] },
+      { "crew": ["Porsche"], "imposter": ["Deutschland", "911"] },
+      { "crew": ["Mercedes-Benz"], "imposter": ["Deutschland", "Stern"] },
+      { "crew": ["BMW"], "imposter": ["Deutschland", "Bayerisch"] },
+      { "crew": ["Audi"], "imposter": ["Deutschland", "Ringe"] },
+      { "crew": ["Volkswagen"], "imposter": ["Deutschland", "Käfer"] },
+      { "crew": ["Tesla"], "imposter": ["Elektro", "Elon Musk"] },
+      { "crew": ["Jaguar"], "imposter": ["England", "Luxus"] },
+      { "crew": ["Land Rover"], "imposter": ["Geländewagen", "England"] },
+      { "crew": ["Ford"], "imposter": ["USA", "F-150"] },
+      { "crew": ["Chevrolet"], "imposter": ["USA", "Muscle Car"] },
+      { "crew": ["Honda"], "imposter": ["Japan", "Civic"] },
+      { "crew": ["Toyota"], "imposter": ["Japan", "Camry"] },
+      { "crew": ["Maserati"], "imposter": ["Italien", "Trident"] }
+    ],
+    "Accessoires": [
+      { "crew": ["Ray-Ban Wayfarer"], "imposter": ["Sonnenbrille", "USA"] },
+      { "crew": ["Hermès Birkin"], "imposter": ["Handtasche", "Luxus"] },
+      { "crew": ["Cartier Love Bracelet"], "imposter": ["Schmuck", "Rotgold"] },
+      { "crew": ["Rolex Submariner"], "imposter": ["Uhr", "Tauchen"] },
+      { "crew": ["Chanel 2.55"], "imposter": ["Handtasche", "Kette"] },
+      { "crew": ["Gucci Belt"], "imposter": ["Gürtel", "GG"] },
+      { "crew": ["Louis Vuitton Neverfull"], "imposter": ["Tasche", "Canvas"] },
+      { "crew": ["Prada Nylon Bag"], "imposter": ["Leicht", "Italien"] },
+      { "crew": ["Burberry Schal"], "imposter": ["Karomuster", "England"] },
+      { "crew": ["Oakley Holbrook"], "imposter": ["Sonnenbrille", "Sport"] }
+    ]
+  }
+}

@@ -15,9 +15,9 @@ class GameSummaryScreen extends StatelessWidget {
         if (settings.mode == 'classic') {
           return 'Imposter';
         } else if (settings.mode == 'undercover') {
-          return 'Imposter: ${settings.imposterWordQuestion}';
+          return 'Imposter: ${settings.imposterContent}';
         } else if (settings.mode == 'similar') {
-          return 'Imposter: ${settings.imposterWordQuestion}';
+          return 'Imposter: ${settings.imposterContent}';
         } else if (settings.mode == 'wordwar') {
           return 'Imposter spielt gegen Crew mit unterschiedlichen Wörtern.';
         } else {
@@ -47,7 +47,7 @@ class GameSummaryScreen extends StatelessWidget {
               subtitle: Text(
                 _roleDescription(
                   player,
-                  service.settings.crewWordQuestion,
+                  service.settings.crewContent,
                   service.settings,
                 ),
               ),

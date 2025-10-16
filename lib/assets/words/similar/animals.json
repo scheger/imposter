@@ -1,0 +1,58 @@
+{
+  "category": "Tiere",
+  "subcategories": {
+    "Säugetiere": [
+      { "crew": ["Hund"], "imposter": ["Wolf", "Fuchs", "Schakal", "Dingo"] },
+      { "crew": ["Katze"], "imposter": ["Löwe", "Tiger", "Leopard", "Puma"] },
+      { "crew": ["Elefant"], "imposter": ["Nashorn", "Flusspferd", "Mammut"] },
+      { "crew": ["Pferd"], "imposter": ["Esel", "Zebra", "Wildpferd"] },
+      { "crew": ["Bär"], "imposter": ["Grizzly", "Eisbär", "Panda"] },
+      { "crew": ["Affe"], "imposter": ["Schimpanse", "Orang-Utan", "Gibbon", "Tamarin"] },
+      { "crew": ["Känguru"], "imposter": ["Wallaby", "Koala", "Wombat"] },
+      { "crew": ["Luchs"], "imposter": ["Puma", "Leopard"] },
+      { "crew": ["Otter"], "imposter": ["Biber", "Marder"] },
+      { "crew": ["Igel"], "imposter": ["Dachs", "Frettchen"] },
+      { "crew": ["Giraffe"], "imposter": ["Zebra", "Antilope"] },
+      { "crew": ["Wal"], "imposter": ["Delfin", "Seekuh"] },
+      { "crew": ["Seehund"], "imposter": ["Robbe", "Seelöwe"] },
+      { "crew": ["Schaf"], "imposter": ["Ziege", "Kuh"] },
+      { "crew": ["Schwein"], "imposter": ["Wildschwein", "Eber"] },
+      { "crew": ["Meerschweinchen"], "imposter": ["Chinchilla", "Stachelschwein"] },
+      { "crew": ["Ratte"], "imposter": ["Maus", "Hamster"] },
+      { "crew": ["Eichhörnchen"], "imposter": ["Murmeltier", "Biber"] },
+      { "crew": ["Tasmanischer Teufel"], "imposter": ["Quoll", "Bandicoot"] },
+      { "crew": ["Tamarin"], "imposter": ["Marmoset", "Lemur"] },
+      { "crew": ["Löwe"], "imposter": ["Tiger", "Leopard", "Jaguar"] },
+      { "crew": ["Tiger"], "imposter": ["Panther", "Jaguar"] },
+      { "crew": ["Panther"], "imposter": ["Schwarzer Panther", "Jaguar"] }
+    ],
+    "Vögel": [
+      { "crew": ["Vogel"], "imposter": ["Adler", "Papagei", "Falke", "Eule"] },
+      { "crew": ["Pinguin"], "imposter": ["Albatros", "Seelöwe", "Robbe"] },
+      { "crew": ["Emu"], "imposter": ["Kookaburra", "Cassowary"] },
+      { "crew": ["Adler"], "imposter": ["Geier", "Habicht"] },
+      { "crew": ["Falke"], "imposter": ["Wanderfalke", "Turmfalke"] },
+      { "crew": ["Eule"], "imposter": ["Schleiereule", "Uhu"] },
+      { "crew": ["Papagei"], "imposter": ["Ara", "Sittich"] },
+      { "crew": ["Huhn"], "imposter": ["Ente", "Gans"] }
+    ],
+    "Reptilien und Amphibien": [
+      { "crew": ["Schlange"], "imposter": ["Kobra", "Python", "Boa", "Viper"] },
+      { "crew": ["Krokodil"], "imposter": ["Alligator", "Gavial"] }
+    ],
+    "Meerestiere": [
+      { "crew": ["Fisch"], "imposter": ["Hai", "Lachs", "Thunfisch", "Forelle"] },
+      { "crew": ["Oktopus"], "imposter": ["Tintenfisch", "Sepia"] },
+      { "crew": ["Muschel"], "imposter": ["Auster", "Schnecke"] },
+      { "crew": ["Krabbe"], "imposter": ["Hummer", "Languste"] }
+    ],
+    "Insekten und Kleintiere": [
+      { "crew": ["Schmetterling"], "imposter": ["Libelle", "Monarchfalter", "Admiral"] },
+      { "crew": ["Biene"], "imposter": ["Wespe", "Hummel", "Ameise"] },
+      { "crew": ["Spinne"], "imposter": ["Skorpion", "Zecke", "Tarantel"] },
+      { "crew": ["Wurm"], "imposter": ["Regenwurm"] },
+      { "crew": ["Grashüpfer"], "imposter": ["Heuschrecke", "Gartenhüpfer"] },
+      { "crew": ["Marienkäfer"], "imposter": ["Mistkäfer", "Rüsselkäfer"] }
+    ]
+  }
+}
