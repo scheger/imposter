@@ -3,7 +3,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/foundation.dart';
 import '../models/words.dart';
 import '../models/game_settings.dart';
-import 'game_service.dart'; // 🔹 wichtig für persistentes Speichern
+import 'game_service.dart';
 
 enum Mode { classic, similar, undercover }
 
@@ -137,6 +137,10 @@ class CategoryService extends ChangeNotifier {
     }
 
     gameService.updateSettings(settings);
+    notifyListeners();
+  }
+
+  void notifyCategoryChanged() {
     notifyListeners();
   }
 

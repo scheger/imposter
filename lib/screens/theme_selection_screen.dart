@@ -119,10 +119,10 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
       allSubcategories.addAll(cat.subcategories);
     }
 
-    final allItems = allSubcategories.expand((s) => s.items).toList();
-    if (allItems.isEmpty) return;
-
-    final randomItem = (allItems..shuffle()).first;
+    if (allSubcategories.isEmpty) return;
+    final chosenSub = (allSubcategories..shuffle()).first;
+    final randomItem = chosenSub.getRandomItem();
+    Provider.of<CategoryService>(context, listen: false).notifyCategoryChanged();
 
     String chosenCategory = "Zufall";
     final gameService = context.read<GameProvider>().service;
@@ -160,7 +160,7 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
   void _continue(CategoryService service) {
     if (_dragMode) return;
 
-    final selectedItems = <WordItem>[];
+    final selectedSubs = <WordSubcategory>[];
     for (var key in _selectedSubcategories) {
       final parts = key.split("::");
       final category = service.findByName(widget.mode, parts[0]);
@@ -168,12 +168,14 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
         (s) => s.name == parts[1],
         orElse: () => WordSubcategory(name: "", items: []),
       );
-      selectedItems.addAll(sub?.items ?? []);
+      if (sub != null && sub.items.isNotEmpty) selectedSubs.add(sub);
     }
 
-    if (selectedItems.isEmpty) return;
+    if (selectedSubs.isEmpty) return;
 
-    final randomItem = (selectedItems..shuffle()).first;
+    final chosenSub = (selectedSubs..shuffle()).first;
+    final randomItem = chosenSub.getRandomItem();
+    Provider.of<CategoryService>(context, listen: false).notifyCategoryChanged();
 
     String chosenCategory = "Auswahl";
     final gameService = context.read<GameProvider>().service;
@@ -221,6 +223,8 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
       context: context,
       builder: (dialogContext) {
         bool isLoading = false;
+        final remainingUnlocks = unlockService.remainingDailyUnlocks();
+        final canUnlock = remainingUnlocks > 0;
 
         Future<void> startAdFlow() async {
           if (!mounted) return;
@@ -237,13 +241,24 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
 
               await adService.showRewardAd(
                 onUserEarnedReward: () async {
-                  await unlockService.unlockCategory(category.name);
+                  final success = await unlockService.unlockCategory(category.name);
                   if (!mounted) return;
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('${category.name} wurde freigeschaltet! 🎉'),
-                    ),
-                  );
+
+                  if (success) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('${category.name} wurde freigeschaltet! 🎉'),
+                      ),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          'Heute hast du bereits 3 Kategorien freigeschaltet.',
+                        ),
+                      ),
+                    );
+                  }
                 },
                 onAdClosed: () {},
               );
@@ -277,28 +292,28 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 6),
-                    // Unterkategorien und Wortanzahl auflisten
                     ...category.subcategories.map((sub) {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 2),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            Text(sub.name, style: const TextStyle(fontSize: 14)),
                             Text(
-                              sub.name,
-                              style: const TextStyle(fontSize: 14),
-                            ),
-                            Text(
-                              '${sub.items.length} Wörter',
-                              style: const TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey,
-                              ),
+                              '${sub.items.length} Wörter${sub.remainingCount < sub.items.length ? ' (${sub.remainingCount})' : ''}',
+                              style: const TextStyle(fontSize: 14, color: Colors.grey),
                             ),
                           ],
                         ),
                       );
                     }),
+                    const SizedBox(height: 12),
+                    Text(
+                      'Verbleibende Freischaltungen heute: $remainingUnlocks',
+                      style: TextStyle(
+                        color: canUnlock ? Colors.green : Colors.red,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -308,7 +323,7 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
                   child: const Text('Abbrechen'),
                 ),
                 TextButton(
-                  onPressed: isLoading
+                  onPressed: !canUnlock || isLoading
                       ? null
                       : () async {
                           setState(() => isLoading = true);
@@ -330,7 +345,6 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
       },
     );
   }
-
 
   // Button-Ansicht für Kategorie
   Widget _buildCategoryButton(WordCategory category) {
@@ -482,7 +496,7 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
                         child: Padding(
                           padding: const EdgeInsets.only(right: 12),
                           child: Text(
-                            '${sub.items.length}',
+                            '${sub.items.length}${(sub.remainingCount > 0 && sub.remainingCount < sub.items.length) ? ' (${sub.remainingCount})' : ''}',
                             style: TextStyle(
                               fontSize: 14,
                               color: selected ? Colors.white70 : Colors.grey[700],

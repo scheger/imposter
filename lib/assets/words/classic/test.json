@@ -1,0 +1,13 @@
+{
+  "category": "Test",
+  "subcategories": {
+    "Kategorie 1": [
+      { "crew": ["Wort 1"], "imposter": ["Hinweis 1", "Hinweis 2", "Hinweis 3"] }
+    ],
+    "Kategorie 2": [
+      { "crew": ["Wort 1"], "imposter": ["Hinweis 1", "Hinweis 2", "Hinweis 3"] },
+      { "crew": ["Wort 2"], "imposter": ["Hinweis 1", "Hinweis 2", "Hinweis 3"] },
+      { "crew": ["Wort 3"], "imposter": ["Hinweis 1", "Hinweis 2", "Hinweis 3"] }
+    ]
+  }
+}

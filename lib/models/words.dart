@@ -12,17 +12,36 @@ class WordCategory {
 
 class WordSubcategory {
   final String name;
-  final List<WordItem> items; // statt List<String>
+  final List<WordItem> items;
+  final Set<int> _usedIndices = {};
 
   WordSubcategory({required this.name, required this.items});
 
   factory WordSubcategory.fromJson(String name, dynamic json) {
-    // json ist eine Liste von Maps
     final list = (json as List<dynamic>)
         .map((e) => WordItem.fromJson(Map<String, dynamic>.from(e)))
         .toList();
     return WordSubcategory(name: name, items: list);
   }
+
+  WordItem getRandomItem() {
+    if (items.isEmpty) throw StateError('Keine Wörter in "$name" vorhanden');
+
+    if (_usedIndices.length == items.length) {
+      _usedIndices.clear();
+    }
+
+    final remaining = List<int>.generate(items.length, (i) => i)
+        .where((i) => !_usedIndices.contains(i))
+        .toList();
+
+    final index = remaining[DateTime.now().millisecondsSinceEpoch % remaining.length];
+    _usedIndices.add(index);
+
+    return items[index];
+  }
+
+  int get remainingCount => items.length - _usedIndices.length;
 }
 
 class WordItem {

@@ -106,7 +106,7 @@ class ImposterApp extends StatelessWidget {
               backgroundColor: kLightBackground,
               elevation: 0,
               foregroundColor: Colors.black,
-              surfaceTintColor: Colors.transparent, // 🔹 wichtig
+              surfaceTintColor: Colors.transparent,
             ),
 
 
@@ -133,7 +133,7 @@ class ImposterApp extends StatelessWidget {
               backgroundColor: kDarkBackground,
               elevation: 0,
               foregroundColor: Colors.white,
-              surfaceTintColor: Colors.transparent, // 🔹
+              surfaceTintColor: Colors.transparent, 
             ),
 
             dropdownMenuTheme: DropdownMenuThemeData(

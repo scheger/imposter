@@ -39,7 +39,7 @@ class GameService {
 
     // Rollen zurücksetzen
     for (var p in players) {
-      p.role = PlayerRole.wordKnower;
+      p.role = PlayerRole.crew;
     }
 
     // Imposter zufällig bestimmen

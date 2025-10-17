@@ -1,6 +1,6 @@
 enum PlayerRole {
   imposter,
-  wordKnower,
+  crew,
   detective,
   spy,
 }
@@ -11,7 +11,7 @@ class Player {
 
   Player({
     required this.name,
-    this.role = PlayerRole.wordKnower,
+    this.role = PlayerRole.crew,
   });
 
   bool get isImposter => role == PlayerRole.imposter;

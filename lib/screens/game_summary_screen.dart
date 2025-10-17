@@ -9,7 +9,7 @@ class GameSummaryScreen extends StatelessWidget {
 
   String _roleDescription(Player player, String word, GameSettings settings) {
     switch (player.role) {
-      case PlayerRole.wordKnower:
+      case PlayerRole.crew:
         return 'Wort: $word';
       case PlayerRole.imposter:
         if (settings.mode == 'classic') {
