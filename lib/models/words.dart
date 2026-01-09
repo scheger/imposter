@@ -1,13 +1,28 @@
 class WordCategory {
   final String name;
-  final String assetPath;
+  final String assetPath; // Leer bei Custom Categories
   final List<WordSubcategory> subcategories;
+  final bool isCustom; // Neu: Um zu unterscheiden, ob editierbar
 
   WordCategory({
     required this.name,
-    required this.assetPath,
+    this.assetPath = '',
     required this.subcategories,
+    this.isCustom = false,
   });
+
+  // Exportiert genau in das gewünschte Format
+  Map<String, dynamic> toJson() {
+    final subMap = <String, dynamic>{};
+    for (var sub in subcategories) {
+      subMap[sub.name] = sub.items.map((i) => i.toJson()).toList();
+    }
+
+    return {
+      "category": name,
+      "subcategories": subMap,
+    };
+  }
 }
 
 class WordSubcategory {
@@ -65,6 +80,11 @@ class WordItem {
       imposter: toList(json['imposter']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "crew": crew,
+      "imposter": imposter,
+    };
+  }
 }
-
-

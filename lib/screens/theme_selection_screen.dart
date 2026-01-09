@@ -7,6 +7,7 @@ import '../models/words.dart';
 import '../services/game_service.dart';
 import '../services/unlock_service.dart';
 import '../services/ad_service.dart';
+import 'custom_category_manager.dart';
 
 class ThemeSelectionScreen extends StatefulWidget {
   final Mode mode; // Wörter oder Fragen
@@ -350,7 +351,7 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
   Widget _buildCategoryButton(WordCategory category) {
     final unlockService = Provider.of<UnlockService>(context, listen: false);
     final adService = context.read<AdService>();
-    final bool unlocked = unlockService.isUnlocked(category.name);
+    final bool unlocked = category.isCustom || unlockService.isUnlocked(category.name);
 
     final bool isExpanded = _expandedCategory == category.name;
     final bool isSelected = isCategorySelected(category.name);
@@ -564,6 +565,18 @@ class _ThemeSelectionScreenState extends State<ThemeSelectionScreen>
       appBar: AppBar(
         title: Text(_getModeTitle(widget.mode)),
         actions: [
+          // Nur im Classic Mode (oder wo gewünscht) anzeigen
+          if (widget.mode == Mode.classic)
+            IconButton(
+              icon: const Icon(Icons.edit_note), // Icon für Editor
+              tooltip: 'Eigene Kategorien verwalten',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const CustomCategoryListScreen()),
+                );
+              },
+            ),
           IconButton(
             icon: Icon(_dragMode ? Icons.check : Icons.swap_vert),
             onPressed: () {

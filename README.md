@@ -16,6 +16,12 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Befehl für UnlockAll
+flutter build apk --dart-define=UNLOCK_ALL=true
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 
 Ich arbeite an einem Partyspiel namens „Imposter Game“, das ich in Flutter entwickle.
 Das Spiel ist lokal auf einem Gerät spielbar (ohne Online-Modus) und funktioniert so:

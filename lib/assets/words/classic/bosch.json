@@ -1,0 +1,111 @@
+{
+  "category": "Bosch Werkstatt",
+  "subcategories": {
+    "Messwerkzeuge": [
+      {
+        "crew": ["Wasserwaage"],
+        "imposter": ["Winkelmesser", "Richtscheit", "Lot"]
+      },
+      {
+        "crew": ["Maßband"],
+        "imposter": ["Zollstock", "Lineal", "Schneidermaßband"]
+      },
+      {
+        "crew": ["Digitaler Laser-Entfernungsmesser"],
+        "imposter": ["Kreuzlinienlaser", "Radarscanner", "Ultraschallmessgerät"]
+      }
+    ],
+    "Handwerkzeuge": [
+      {
+        "crew": ["Hammer"],
+        "imposter": ["Gummihammer", "Beil", "Schlägel"]
+      },
+      {
+        "crew": ["Cutter-Messer"],
+        "imposter": ["Taschenmesser", "Skalpell", "Schere"]
+      },
+      {
+        "crew": ["Schraubendreher"],
+        "imposter": ["Inbusschlüssel", "Stechbeitel", "Phasenprüfer"]
+      }
+    ],
+    "Elektrowerkzeuge": [
+      {
+        "crew": ["Akkuschrauber"],
+        "imposter": ["Bohrmaschine", "Schlagschrauber", "Dremel"]
+      },
+      {
+        "crew": ["Multidetector (Ortungsgerät)"],
+        "imposter": ["Wärmebildkamera", "Feuchtigkeitsmesser", "Metallscanner"]
+      }
+    ],
+    "Zubehör": [
+      {
+        "crew": ["Bosch Kappe"],
+        "imposter": ["Schutzhelm", "Schutzbrille", "Stirnband"]
+      },
+      {
+        "crew": ["Werkzeugkoffer"],
+        "imposter": ["Werkzeugkiste", "Rucksack", "Umhängetasche"]
+      }
+    ],
+    "Sägen & Trennen": [
+      {
+        "crew": ["Stichsäge"],
+        "imposter": ["Kreissäge", "Laubsäge", "Fuchsschwanz"]
+      },
+      {
+        "crew": ["Winkelschleifer"],
+        "imposter": ["Trennschleifer", "Poliermaschine", "Dremel"]
+      },
+      {
+        "crew": ["Säbelsäge"],
+        "imposter": ["Kettensäge", "Bügelsäge", "Astsäge"]
+      }
+    ],
+    "Oberflächenbearbeitung": [
+      {
+        "crew": ["Multischleifer"],
+        "imposter": ["Schleifklotz", "Exzenterschleifer", "Feile"]
+      },
+      {
+        "crew": ["Elektrohobel"],
+        "imposter": ["Stechbeitel", "Raspel", "Schmirgelpapier"]
+      }
+    ],
+    "Befestigen & Kleben": [
+      {
+        "crew": ["Heißklebepistole"],
+        "imposter": ["Lötkolben", "Sekundenkleber", "Silikonspritze"]
+      },
+      {
+        "crew": ["Elektrotacker"],
+        "imposter": ["Locher", "Nagelpistole", "Büroklammer"]
+      }
+    ],
+    "Garten & Außenbereich": [
+      {
+        "crew": ["Hochdruckreiniger"],
+        "imposter": ["Gartenschlauch", "Dampfreiniger", "Laubbläser"]
+      },
+      {
+        "crew": ["Akku-Gartenschere"],
+        "imposter": ["Heckenschere", "Seitenschneider", "Rosenschere"]
+      },
+      {
+        "crew": ["Rasentrimmer"],
+        "imposter": ["Sense", "Rasenmäher", "Sichel"]
+      }
+    ],
+    "Stationäre Geräte": [
+      {
+        "crew": ["Werkbank"],
+        "imposter": ["Schreibtisch", "Sägebock", "Schraubstock"]
+      },
+      {
+        "crew": ["Tischbohrmaschine"],
+        "imposter": ["Fräse", "Drechselbank", "Ständerbohrmaschine"]
+      }
+    ]
+  }
+}
